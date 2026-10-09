@@ -10,7 +10,6 @@ import { Navigation } from './components/Navigation';
 import { CustomCursor } from './components/CustomCursor';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { ContactDrawer } from './components/ContactDrawer';
-import { ClientLogos } from './components/ClientLogos';
 import { Hero } from './sections/Hero';
 import { StatementSection } from './sections/StatementSection';
 import { ProcessSection } from './sections/ProcessSection';
@@ -140,9 +139,6 @@ export default function App() {
             onOpenContact={() => setIsContactOpen(true)}
             onNavigateToWork={navigateToWork}
           />
-
-          {/* Client Logos Strip */}
-          <ClientLogos />
 
           {/* 02. "Hallo!" Statement with Fluid Interactive Word-by-Word Typography */}
           <StatementSection />
