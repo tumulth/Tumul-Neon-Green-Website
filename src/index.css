@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --color-paper: var(--color-paper);
+  --color-ink: var(--color-ink);
+  --color-muted: var(--color-muted);
+  --color-accent: #C8FF00;
+  --color-hairline: var(--color-hairline);
+}
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --color-paper: #F5F4F0;
+  --color-ink: #111111;
+  --color-muted: #8A8A84;
+  --color-hairline: rgba(17, 17, 17, 0.12);
+  --color-surface: #FFFFFF;
+  --color-card: #FFFFFF;
+  --color-card-border: rgba(17, 17, 17, 0.1);
+  --color-panel: #EBEAE5;
+
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  color-scheme: light;
+}
+
+html.dark {
+  --color-paper: #0C0C0B;
+  --color-ink: #F5F4F0;
+  --color-muted: #8E8E88;
+  --color-hairline: rgba(255, 255, 255, 0.12);
+  --color-surface: #141413;
+  --color-card: #181816;
+  --color-card-border: rgba(255, 255, 255, 0.12);
+  --color-panel: #1B1B18;
+
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  color-scheme: dark;
+}
+
+/* Smooth color transition for theme switching */
+body {
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper);
+}
+::-webkit-scrollbar-thumb {
+  background: #D4D3CC;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #111111;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #0C0C0B;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #2A2A26;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #C8FF00;
+}
+
+/* Noise overlay texture for tactile editorial print feel */
+.editorial-grain {
+  background-image: radial-gradient(rgba(17, 17, 17, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+html.dark .editorial-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+}
+
+/* Hide default cursor on desktop when custom cursor active */
+@media (min-width: 1024px) {
+  .has-custom-cursor {
+    cursor: none;
+  }
+  .has-custom-cursor a,
+  .has-custom-cursor button,
+  .has-custom-cursor input,
+  .has-custom-cursor [role="button"] {
+    cursor: none;
+  }
+}
+
+/* Fluid animations */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.04);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 8s ease-in-out infinite;
+}
+
+/* Sliding reviews marquee moving right to left */
+@keyframes marqueeMove {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marqueeMove 32s linear infinite;
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
