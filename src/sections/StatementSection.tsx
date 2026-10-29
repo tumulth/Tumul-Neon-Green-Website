@@ -51,7 +51,7 @@ export const StatementSection: React.FC = () => {
         {/* Dynamic Variable Proximity Editorial Headline */}
         <div className="max-w-4xl text-center leading-[1.24] text-3xl sm:text-5xl md:text-6xl lg:text-[66px] tracking-tight text-[#151515] dark:text-[#F0F0EA]">
           <VariableProximity
-            label="I’m Tumul Thakur, a brand identity and website designer in Pune. I design logos, brand guidelines, websites and campaigns for companies in Pune, Mumbai and beyond."
+            label="I’m Tumul Thakur, a designer helping businesses turn their ideas into "
             className="text-[#151515] dark:text-[#F0F0EA] hover:text-black dark:hover:text-white transition-colors"
             fromFontVariationSettings="'wght' 350, 'opsz' 14"
             toFontVariationSettings="'wght' 950, 'opsz' 40"
@@ -59,7 +59,22 @@ export const StatementSection: React.FC = () => {
             radius={130}
             falloff="gaussian"
           />
+          <strong className="font-normal">
+            <VariableProximity
+              label="brands people remember."
+              className="text-[#111111] dark:text-white"
+              fromFontVariationSettings="'wght' 800, 'opsz' 40"
+              toFontVariationSettings="'wght' 1000, 'opsz' 40"
+              containerRef={containerRef}
+              radius={130}
+              falloff="gaussian"
+            />
+          </strong>
         </div>
+
+        <p className="mt-8 md:mt-10 max-w-2xl text-lg sm:text-xl md:text-2xl leading-relaxed text-[#555] dark:text-[#B5B5AE]">
+          From visual identities to websites, I create thoughtful design systems that give brands a distinct point of view.
+        </p>
 
         {/* Balanced Pill Badges for Mobile & Tablet */}
         <div className="flex xl:hidden flex-wrap justify-center gap-2.5 mt-10 pt-6 border-t border-black/5 dark:border-white/10">
