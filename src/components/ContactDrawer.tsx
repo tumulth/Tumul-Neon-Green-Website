@@ -36,8 +36,22 @@ export const ContactDrawer: React.FC<ContactDrawerProps> = ({ isOpen, onClose })
     setTimeout(() => setCopiedEmail(false), 2500);
   };
 
+  // There is no form backend: open the visitor's mail app with the brief filled in, so nothing is lost.
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subject = `${selectedServices.join(' + ') || 'Project'} enquiry${name ? ` from ${name}` : ''}`;
+    const body = [
+      'Hi Tumul,',
+      '',
+      `Services: ${selectedServices.join(', ') || 'Not sure yet'}`,
+      `Timeline: ${timeline}`,
+      `Budget: ${budget}`,
+      '',
+      brief || 'About the project:',
+      '',
+      name ? `— ${name}${email ? ` (${email})` : ''}` : '',
+    ].join('\n');
+    window.location.href = `mailto:tumul41@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
   };
 
@@ -117,9 +131,9 @@ export const ContactDrawer: React.FC<ContactDrawerProps> = ({ isOpen, onClose })
               <div className="w-12 h-12 rounded-full bg-[#C8FF00] text-black flex items-center justify-center text-xl font-bold">
                 ✓
               </div>
-              <h3 className="text-2xl font-serif text-[#111111] dark:text-[#F5F4F0]">Brief Received</h3>
+              <h3 className="text-2xl font-serif text-[#111111] dark:text-[#F5F4F0]">Email ready</h3>
               <p className="text-sm text-[#8A8A84] dark:text-[#AAA] max-w-md">
-                Thank you, {name || 'collaborator'}. Tumul will review your project parameters and respond within 24 hours from Pune (IST).
+                Thank you, {name || 'collaborator'}. Your mail app should have opened with the brief filled in. Send it from there, or write to tumul41@gmail.com directly.
               </p>
               <button
                 onClick={() => setSubmitted(false)}

@@ -8,6 +8,8 @@ import { SiddhivinayakCaseStudy } from './siddhivinayak/SiddhivinayakCaseStudy';
 import { KrisalaCaseStudy } from './krisala/KrisalaCaseStudy';
 import { SocialMediaCreativesCaseStudy } from './social-media/SocialMediaCreativesCaseStudy';
 import { SomaCafeCaseStudy } from './soma/SomaCafeCaseStudy';
+import { WebsiteCaseStudy } from './website/WebsiteCaseStudy';
+import { WEBSITE_STUDIES } from './website/websiteData';
 
 interface CaseStudyModalProps {
   project: Project | null;
@@ -21,16 +23,6 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
   onSelectProject,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const originalTitle = document.title;
-    if (project) {
-      document.title = `${project.title} — ${project.categoryTag} | Tumul Thakur`;
-    }
-    return () => {
-      document.title = originalTitle;
-    };
-  }, [project]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -83,17 +75,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
         ref={scrollContainerRef}
         data-lenis-prevent="true"
         onWheel={handleModalWheel}
-        className={`relative w-full ${
-          project.id === 'bimacme' ||
-          project.id === 'sangreen-logistics' ||
-          project.id === 'sangreen-future-renewables' ||
-          project.id === 'sidhivinayak-precast' ||
-          project.id === 'krisala-hiranandani' ||
-          project.id === 'social-media-creatives' ||
-          project.id === 'soma-cafe'
-            ? 'max-w-5xl lg:max-w-6xl'
-            : 'max-w-4xl'
-        } bg-[#F5F4F0] dark:bg-[#0C0C0B] text-[#111111] dark:text-[#F5F4F0] h-full overflow-y-auto shadow-2xl flex flex-col animate-in slide-in-from-right duration-300 overscroll-contain select-text transition-colors duration-300`}
+        className={`relative w-full max-w-5xl lg:max-w-6xl bg-[#F5F4F0] dark:bg-[#0C0C0B] text-[#111111] dark:text-[#F5F4F0] h-full overflow-y-auto shadow-2xl flex flex-col animate-in slide-in-from-right duration-300 overscroll-contain select-text transition-colors duration-300`}
         style={{
           WebkitOverflowScrolling: 'touch',
           overscrollBehavior: 'contain',
@@ -162,6 +144,12 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               onSelectProject={onSelectProject}
               onClose={onClose}
             />
+          ) : WEBSITE_STUDIES[project.id] ? (
+            <WebsiteCaseStudy
+              project={project}
+              onSelectProject={onSelectProject}
+              onClose={onClose}
+            />
           ) : (
             <>
               {/* Section 1: Project Title & Metadata Header */}
@@ -225,7 +213,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                 01 / THE CHALLENGE
               </span>
               <h2 className="text-xl sm:text-2xl font-serif text-[#111111] dark:text-[#F5F4F0] leading-snug">
-                Dismantling category noise with uncompromising creative intent.
+                What the client needed.
               </h2>
               <p className="text-sm md:text-base text-[#444440] dark:text-[#BBB] leading-relaxed mt-2">
                 {project.challenge}
@@ -237,7 +225,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                 02 / THE APPROACH
               </span>
               <h2 className="text-xl sm:text-2xl font-serif text-[#111111] dark:text-[#F5F4F0] leading-snug">
-                Systematic engineering translated into physical and digital touchpoints.
+                What I designed.
               </h2>
               <p className="text-sm md:text-base text-[#444440] dark:text-[#BBB] leading-relaxed mt-2">
                 {project.approach}

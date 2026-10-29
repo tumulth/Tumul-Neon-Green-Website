@@ -85,7 +85,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenDrawer }) => {
         <div className="mt-16 pt-8 border-t border-[#111111]/10 flex flex-wrap justify-between items-center gap-6 text-xs font-mono uppercase tracking-wider text-[#111111]">
           <div className="flex flex-wrap items-center gap-6 sm:gap-10">
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/tumul-thakur-814a6624b/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#8A8A84] transition-colors flex items-center gap-1.5"
@@ -96,7 +96,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenDrawer }) => {
             </a>
 
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/tumulbut.thefakeone/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#8A8A84] transition-colors flex items-center gap-1.5"
@@ -107,7 +107,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenDrawer }) => {
             </a>
 
             <a
-              href="https://behance.net"
+              href="https://www.behance.net/tumulthakur"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#8A8A84] transition-colors flex items-center gap-1.5"

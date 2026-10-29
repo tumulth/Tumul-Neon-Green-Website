@@ -8,6 +8,27 @@ interface ProjectArtProps {
 
 export const ProjectArt: React.FC<ProjectArtProps> = ({ projectId, className = '', variant = 'card' }) => {
   switch (projectId) {
+    case 'subculture':
+    case 'mi-cocina':
+    case 'bimacme-website': {
+      const site = { subculture: ['Subculture', '#33379D'], 'mi-cocina': ['Mi Cocina', '#B93423'], 'bimacme-website': ['Bimacme', '#3D7FE2'] }[projectId]!;
+      return (
+        <div className={`relative overflow-hidden bg-[#111111] select-none group/art ${className}`}>
+          <img
+            src={`/covers/${projectId}.jpg`}
+            alt={`${site[0]} website home screen`}
+            className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover/art:scale-105"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 pointer-events-none" />
+          <div className="absolute top-3.5 left-3.5 font-mono text-[9px] tracking-widest uppercase bg-black/60 backdrop-blur-md px-2.5 py-1 rounded text-white border border-white/10 flex items-center gap-1.5 shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: site[1] }} />
+            <span>{site[0]} // WEBSITE</span>
+          </div>
+        </div>
+      );
+    }
+
     case 'bimacme':
       return (
         <div className={`relative overflow-hidden bg-[#0C1D49] select-none group/art ${className}`}>

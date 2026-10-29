@@ -44,14 +44,14 @@ export const StatementSection: React.FC = () => {
           </div>
           <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/90 dark:bg-[#181816]/90 border border-black/10 dark:border-white/15 shadow-sm text-xs font-semibold text-[#111] dark:text-[#F5F4F0] backdrop-blur-sm hover:border-[#111] dark:hover:border-[#C8FF00] transition-all">
             <span className="text-lime-600 dark:text-[#C8FF00]">🌿</span>
-            <span>Editorial & Packaging</span>
+            <span>Websites</span>
           </div>
         </div>
 
         {/* Dynamic Variable Proximity Editorial Headline */}
         <div className="max-w-4xl text-center leading-[1.24] text-3xl sm:text-5xl md:text-6xl lg:text-[66px] tracking-tight text-[#151515] dark:text-[#F0F0EA]">
           <VariableProximity
-            label="I design distinctive brand identities, modular visual systems, and editorial motion graphics grounded in typography, grid discipline, and purposeful craft."
+            label="I’m Tumul Thakur, a brand identity and website designer in Pune. I design logos, brand guidelines, websites and campaigns for companies in Pune, Mumbai and beyond."
             className="text-[#151515] dark:text-[#F0F0EA] hover:text-black dark:hover:text-white transition-colors"
             fromFontVariationSettings="'wght' 350, 'opsz' 14"
             toFontVariationSettings="'wght' 950, 'opsz' 40"
@@ -73,7 +73,7 @@ export const StatementSection: React.FC = () => {
             💡 Corporate Guidelines
           </span>
           <span className="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181816] border border-black/10 dark:border-white/15 text-xs font-semibold text-[#111] dark:text-[#F5F4F0]">
-            🌿 Editorial & Packaging
+            🌿 Websites
           </span>
         </div>
       </div>

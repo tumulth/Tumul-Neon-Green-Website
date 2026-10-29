@@ -41,8 +41,8 @@ export const AboutBioSection: React.FC = () => {
           / Who Am I
         </span>
         <h2 className="text-4xl sm:text-6xl md:text-7xl font-sans font-bold tracking-tight text-[#111111] dark:text-[#F5F4F0]">
-          Pushing Boundaries{' '}
-          <span className="text-[#8A8A84] dark:text-[#777] font-normal">since 2021</span>
+          Designing in Pune{' '}
+          <span className="text-[#8A8A84] dark:text-[#777] font-normal">since 2020</span>
         </h2>
       </div>
 
@@ -129,8 +129,8 @@ export const AboutBioSection: React.FC = () => {
                 <div className="w-full h-full relative flex flex-col justify-center items-center p-8 select-none">
                   <div className="relative w-full max-w-[300px] aspect-[4/5] rounded-2xl overflow-hidden bg-[#181818] border border-white/10 shadow-2xl">
                     <img
-                      src="/tumul.png"
-                      alt="Tumul Thakur Editorial Portrait"
+                      src="/tumul-thakur-designer-pune.jpg"
+                      alt="Tumul Thakur, brand and website designer in Pune"
                       className="w-full h-full object-cover filter grayscale contrast-125 sepia-[0.25] brightness-95"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
@@ -161,7 +161,7 @@ export const AboutBioSection: React.FC = () => {
           <div className="flex items-center justify-between px-2 text-xs font-mono text-[#555] dark:text-[#AAA]">
             <div className="flex items-center gap-4">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/tumul-thakur-814a6624b/"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-black dark:hover:text-[#C8FF00] transition-colors"
@@ -169,7 +169,7 @@ export const AboutBioSection: React.FC = () => {
                 LinkedIn ↗
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/tumulbut.thefakeone/"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-black dark:hover:text-[#C8FF00] transition-colors"
@@ -177,7 +177,7 @@ export const AboutBioSection: React.FC = () => {
                 Instagram ↗
               </a>
               <a
-                href="https://behance.net"
+                href="https://www.behance.net/tumulthakur"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-black dark:hover:text-[#C8FF00] transition-colors"
@@ -193,10 +193,10 @@ export const AboutBioSection: React.FC = () => {
         <div className="lg:col-span-7 flex flex-col gap-10">
           <div className="flex flex-col gap-4 text-base sm:text-lg text-[#333] dark:text-[#DDD] leading-relaxed font-sans">
             <p>
-              I am a visual designer and art director based in Pune, India. My practice focuses on building comprehensive brand identities, multi-chapter corporate design guidelines, and motion graphics for infrastructure, engineering, hospitality, and consumer brands.
+              I’m Tumul Thakur, a brand identity and website designer based in Pune, India. I design logos, brand guidelines, websites, campaigns and motion for engineering, real estate, hospitality and consumer brands in Pune, Mumbai and the UK.
             </p>
             <p className="text-sm sm:text-base text-[#666] dark:text-[#AAA]">
-              Over the last five years—most recently as Senior Visualizer at Bandish Studios—I have developed identity systems from initial vector drafts through to final vendor fabrication. I work directly with founders, creative directors, and engineering teams, translating complex operations into structured typography, mathematical grids, physical print specifications, and high-impact digital campaigns.
+              Since 2020 I’ve worked at Bandish Studios (as Senior Visualiser), House of Content and two studios before that, on clients like Krisala × Hiranandani, Bandhan Bank and Smart Bazaar. In 2026 I designed and built websites for Subculture in Aundh, Mi Cocina in Baner and Bimacme. I’m open to freelance projects and full-time roles in Pune, Mumbai or remote.
             </p>
           </div>
 

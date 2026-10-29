@@ -29,7 +29,7 @@ export const CtaBanner: React.FC<CtaBannerProps> = ({ onOpenContact }) => {
             Have a Project in Mind?
           </h2>
           <p className="text-sm sm:text-base text-[#A3A39E] max-w-lg mx-auto font-sans leading-relaxed">
-            Available for brand identity commissions, corporate design guidelines, and campaign art direction. Let's discuss your scope, timeline, and deliverables.
+            Open to freelance projects and full-time roles in Pune, Mumbai or remote: brand identities, websites, brand guidelines and campaigns. Tell me what you’re making.
           </p>
 
           <button

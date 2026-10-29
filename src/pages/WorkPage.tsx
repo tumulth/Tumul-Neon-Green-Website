@@ -20,7 +20,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({
     if (filter === 'ALL') return true;
     if (filter === 'BRANDING') return p.category.includes('BRANDING') || p.category.includes('IDENTITY');
     if (filter === 'SYSTEMS') return p.category.includes('SYSTEM') || p.category.includes('COMMUNICATION');
-    if (filter === 'DIGITAL') return p.category.includes('DIGITAL') || p.category.includes('UI') || p.category.includes('SOCIAL');
+    if (filter === 'DIGITAL') return p.category.includes('WEBSITE') || p.category.includes('UI') || p.category.includes('SOCIAL');
     return true;
   });
 
@@ -48,13 +48,13 @@ export const WorkPage: React.FC<WorkPageProps> = ({
         <div className="my-10 md:my-14 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <span className="text-xs font-mono text-[#8A8A84] dark:text-[#888] uppercase tracking-widest block mb-2">
-              CLIENT ARCHIVE // 2023 — 2026
+              CLIENT ARCHIVE // 2020 — 2026
             </span>
             <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-[#111111] dark:text-[#F5F4F0] leading-none font-sans">
               ALL WORKS
             </h1>
             <p className="mt-4 text-base sm:text-xl font-serif italic text-[#8A8A84] dark:text-[#AAA] max-w-xl">
-              A curated archive of {PROJECTS.length} brand identity systems, corporate guidelines, motion campaigns, and packaging projects designed by Tumul Thakur.
+              {PROJECTS.length} projects by Tumul Thakur, brand and website designer in Pune: websites, brand identities, guidelines and campaigns for companies in Pune, Mumbai and the UK.
             </p>
           </div>
 
@@ -107,9 +107,13 @@ export const WorkPage: React.FC<WorkPageProps> = ({
         {viewMode === 'GRID' ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {filteredProjects.map((project) => (
-              <div
+              <a
                 key={project.id}
-                onClick={() => onOpenCaseStudy(project)}
+                href={`/work/${project.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onOpenCaseStudy(project);
+                }}
                 data-cursor="view"
                 className="group cursor-pointer flex flex-col gap-4"
               >
@@ -144,7 +148,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({
                     </span>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         ) : (

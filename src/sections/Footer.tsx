@@ -1,4 +1,5 @@
 import React from 'react';
+import { PROJECTS } from '../data/projects';
 
 interface FooterProps {
   onNavigateHome?: () => void;
@@ -42,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({
               }}
               className="hover:text-[#8A8A84] dark:hover:text-[#C8FF00] transition-colors uppercase text-[#111] dark:text-[#F5F4F0]"
             >
-              Work (7)
+              Work ({PROJECTS.length})
             </button>
             <button
               onClick={() => {

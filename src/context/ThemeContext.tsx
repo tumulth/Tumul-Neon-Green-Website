@@ -11,18 +11,20 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('tumul-theme') as Theme | null;
-      if (saved === 'light' || saved === 'dark') return saved;
-      if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-      }
-    }
-    return 'light';
-  });
+  // Pages are prerendered in light mode, so the first render must match that; the visitor's
+  // saved or system preference is read after hydration (index.html already set the class before paint).
+  const [theme, setThemeState] = useState<Theme>('light');
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    const saved = localStorage.getItem('tumul-theme') as Theme | null;
+    if (saved === 'light' || saved === 'dark') setThemeState(saved);
+    else if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) setThemeState('dark');
+    setReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!ready) return;
     const root = document.documentElement;
     if (theme === 'dark') {
       root.classList.add('dark');
@@ -36,7 +38,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       document.body.style.color = '#111111';
     }
     localStorage.setItem('tumul-theme', theme);
-  }, [theme]);
+  }, [theme, ready]);
 
   const toggleTheme = () => {
     setThemeState((prev) => (prev === 'light' ? 'dark' : 'light'));

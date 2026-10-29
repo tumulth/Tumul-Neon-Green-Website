@@ -87,7 +87,9 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({
 
                     {/* Headline */}
                     <h3 className="text-2xl sm:text-4xl md:text-5xl font-black font-sans uppercase tracking-tight text-[#111111] dark:text-[#F5F4F0] group-hover:text-[#111111] dark:group-hover:text-white transition-colors">
-                      {project.title}
+                      <a href={`/work/${project.id}`} onClick={(e) => e.preventDefault()}>
+                        {project.title}
+                      </a>
                     </h3>
 
                     {/* Poetic Tagline */}

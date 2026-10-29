@@ -160,7 +160,7 @@ export const ProcessSection: React.FC = () => {
               CLIENT TESTIMONIALS & ENDORSEMENTS
             </span>
             <h3 className="text-2xl sm:text-3xl font-serif italic text-[#111] dark:text-[#F5F4F0]">
-              Trusted by founders across three continents
+              What clients say about working with me
             </h3>
           </div>
           <span className="hidden sm:inline font-mono text-xs text-[#8A8A84] dark:text-[#777]">

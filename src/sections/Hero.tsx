@@ -108,7 +108,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork }) => {
             delay: 0.6,
           }}
         >
-          Visual identity &middot; Art direction &middot; Digital experiences
+          Tumul Thakur &middot; Brand &amp; website designer in Pune
         </motion.p>
 
         {/* Single Primary CTA */}

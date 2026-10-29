@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SERVICES, ServiceItem } from '../data/projects';
+import { SERVICES, ServiceItem, getProject } from '../data/projects';
 
 interface ServicesProps {
   onSelectProjectByTitle: (title: string) => void;
@@ -23,7 +23,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectProjectByTitle, onOp
             </h2>
           </div>
           <p className="text-sm md:text-base font-serif italic text-[#8A8A84] dark:text-[#999] max-w-sm">
-            Hands-on visual identity systems, corporate brand manuals, and motion design tailored for founders, infrastructure leaders, and creative studios.
+            Brand identities, websites, brand guidelines and campaigns for businesses in Pune, Mumbai and beyond.
           </p>
         </div>
 
@@ -148,7 +148,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectProjectByTitle, onOp
                     className="w-full py-3 bg-[#EAE8E2] dark:bg-[#222220] hover:bg-[#111111] dark:hover:bg-[#C8FF00] hover:text-white dark:hover:text-[#111111] text-[#111] dark:text-[#F5F4F0] transition-colors text-xs font-mono font-bold uppercase tracking-wider text-center"
                     data-cursor="arrow"
                   >
-                    SEE IN ACTION: {activeService.associatedProject.toUpperCase()} →
+                    SEE IN ACTION: {(getProject(activeService.associatedProject)?.title ?? activeService.associatedProject).toUpperCase()} →
                   </button>
                   <button
                     onClick={onOpenContact}

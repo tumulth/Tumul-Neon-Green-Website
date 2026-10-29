@@ -5,7 +5,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
-import { PROJECTS, Project } from './data/projects';
+import { PROJECTS, Project, getProject } from './data/projects';
+import { buildHead, parsePath } from './seo';
 import { Navigation } from './components/Navigation';
 import { CustomCursor } from './components/CustomCursor';
 import { CaseStudyModal } from './components/CaseStudyModal';
@@ -16,13 +17,20 @@ import { ProcessSection } from './sections/ProcessSection';
 import { SelectedWork } from './sections/SelectedWork';
 import { Services } from './sections/Services';
 import { AboutBioSection } from './sections/AboutBioSection';
+import { FaqSection } from './sections/FaqSection';
 import { CtaBanner } from './sections/CtaBanner';
 import { Footer } from './sections/Footer';
 import { WorkPage } from './pages/WorkPage';
 
-export default function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'work'>('home');
-  const [activeProject, setActiveProject] = useState<Project | null>(null);
+export default function App({ initialPath }: { initialPath: string }) {
+  const initial = parsePath(initialPath);
+  const initialProject = initial.name === 'project' ? getProject(initial.id) ?? null : null;
+
+  const [currentView, setCurrentView] = useState<'home' | 'work'>(initial.name === 'work' ? 'work' : 'home');
+  const [activeProject, setActiveProject] = useState<Project | null>(initialProject);
+  // A project URL opened directly (/work/subculture) shows only its case study until it's closed,
+  // so each project page has its own content for search engines.
+  const [projectOnly, setProjectOnly] = useState(!!initialProject);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -57,25 +65,43 @@ export default function App() {
   // Do NOT call lenis.stop() when modal is open, because Lenis.stop() intercepts and blocks all window wheel events with preventDefault().
   // Instead, the CaseStudyModal and ContactDrawer containers have data-lenis-prevent="true" and explicit handlers so they scroll 100% smoothly.
 
-  // Sync with window location hash for clean multi-page behavior and browser back/forward
+  // Real URLs (/work, /work/<project>) with browser back/forward; old #work links still work.
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash === 'work' || hash === 'all-work') {
-        setCurrentView('work');
+    const legacy = window.location.hash.replace('#', '');
+    if (window.location.pathname === '/' && (legacy === 'work' || legacy === 'all-work')) {
+      window.history.replaceState(null, '', '/work');
+      setCurrentView('work');
+    }
+
+    const handlePopState = () => {
+      const route = parsePath(window.location.pathname);
+      if (route.name === 'project') {
+        setActiveProject(getProject(route.id) ?? null);
       } else {
-        setCurrentView('home');
+        setActiveProject(null);
+        setProjectOnly(false);
+        setCurrentView(route.name === 'work' ? 'work' : 'home');
       }
     };
 
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const navigateToHome = () => {
-    setCurrentView('home');
-    window.location.hash = '';
+  // Keep the tab title, description and canonical link in step with the URL.
+  const path = activeProject ? `/work/${activeProject.id}` : currentView === 'work' ? '/work' : '/';
+  useEffect(() => {
+    const head = buildHead(path);
+    document.title = head.title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', head.description);
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', head.canonical);
+  }, [path]);
+
+  const pushPath = (to: string) => {
+    if (window.location.pathname !== to) window.history.pushState(null, '', to);
+  };
+
+  const scrollTop = () => {
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: false });
     } else {
@@ -83,18 +109,31 @@ export default function App() {
     }
   };
 
+  const navigateToHome = () => {
+    setActiveProject(null);
+    setProjectOnly(false);
+    setCurrentView('home');
+    pushPath('/');
+    scrollTop();
+  };
+
   const navigateToWork = () => {
+    setActiveProject(null);
+    setProjectOnly(false);
     setCurrentView('work');
-    window.location.hash = 'work';
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: false });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    pushPath('/work');
+    scrollTop();
   };
 
   const handleOpenCaseStudy = (project: Project) => {
     setActiveProject(project);
+    pushPath(`/work/${project.id}`);
+  };
+
+  const handleCloseCaseStudy = () => {
+    setActiveProject(null);
+    setProjectOnly(false);
+    pushPath(currentView === 'work' ? '/work' : '/');
   };
 
   const handleSelectProjectByTitle = (title: string) => {
@@ -102,7 +141,7 @@ export default function App() {
       (p) => p.title.toLowerCase() === title.toLowerCase() || p.id === title.toLowerCase()
     );
     if (found) {
-      setActiveProject(found);
+      handleOpenCaseStudy(found);
     } else {
       navigateToWork();
     }
@@ -131,7 +170,7 @@ export default function App() {
       />
 
       {/* Multi-Page View Routing */}
-      {currentView === 'home' ? (
+      {projectOnly ? null : currentView === 'home' ? (
         <main>
           {/* 01. Hero Section (Strict editorial typography-led focal point) */}
           <Hero
@@ -165,7 +204,10 @@ export default function App() {
           {/* 06. "Who Am I / Pushing Boundaries since 2021" + Photo & Experience Table */}
           <AboutBioSection />
 
-          {/* 07. "Let's Make It Happen" Glowing Lime CTA Banner */}
+          {/* 07. Questions people ask before hiring a designer in Pune */}
+          <FaqSection />
+
+          {/* 08. "Let's Make It Happen" Glowing Lime CTA Banner */}
           <CtaBanner onOpenContact={() => setIsContactOpen(true)} />
         </main>
       ) : (
@@ -180,17 +222,19 @@ export default function App() {
       )}
 
       {/* Footer with links and reduced-scale signature wordmark */}
-      <Footer
-        onNavigateHome={navigateToHome}
-        onNavigateWork={navigateToWork}
-        onOpenContact={() => setIsContactOpen(true)}
-      />
+      {!projectOnly && (
+        <Footer
+          onNavigateHome={navigateToHome}
+          onNavigateWork={navigateToWork}
+          onOpenContact={() => setIsContactOpen(true)}
+        />
+      )}
 
       {/* Comprehensive Case Study Reader Modal */}
       <CaseStudyModal
         project={activeProject}
-        onClose={() => setActiveProject(null)}
-        onSelectProject={(project) => setActiveProject(project)}
+        onClose={handleCloseCaseStudy}
+        onSelectProject={handleOpenCaseStudy}
       />
 
       {/* Interactive Project Inquiry Drawer */}
