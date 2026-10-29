@@ -288,6 +288,16 @@ export const buildSitemap = (date: string) => {
   ].join('\n');
 };
 
+export const buildRobotsTxt = () =>
+  [
+    '# Search engines and AI assistants are welcome to read and cite this site.',
+    'User-agent: *',
+    'Allow: /',
+    '',
+    `Sitemap: ${abs('/sitemap.xml')}`,
+    '',
+  ].join('\n');
+
 // A plain-text summary for AI assistants (https://llmstxt.org).
 export const buildLlmsTxt = () =>
   [

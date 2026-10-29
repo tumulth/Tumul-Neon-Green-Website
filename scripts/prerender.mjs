@@ -9,7 +9,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
 const server = join(root, 'dist-ssr', 'entry-server.js');
 
-const { render, ROUTES, buildSitemap, buildLlmsTxt, CASE_STUDY_FONTS } = await import(pathToFileURL(server).href);
+const { render, ROUTES, buildSitemap, buildLlmsTxt, buildRobotsTxt, CASE_STUDY_FONTS } = await import(pathToFileURL(server).href);
 const template = readFileSync(join(dist, 'index.html'), 'utf8');
 
 const HEAD = /<!--head:start-->[\s\S]*?<!--head:end-->/;
@@ -32,5 +32,6 @@ for (const route of ROUTES) {
 const today = new Date().toISOString().slice(0, 10);
 writeFileSync(join(dist, 'sitemap.xml'), buildSitemap(today));
 writeFileSync(join(dist, 'llms.txt'), buildLlmsTxt());
+writeFileSync(join(dist, 'robots.txt'), buildRobotsTxt());
 rmSync(join(root, 'dist-ssr'), { recursive: true, force: true });
-console.log('wrote sitemap.xml and llms.txt');
+console.log('wrote sitemap.xml, llms.txt and robots.txt');

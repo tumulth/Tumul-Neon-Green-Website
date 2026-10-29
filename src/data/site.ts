@@ -2,7 +2,8 @@
 // prerendered head (title, JSON-LD, llms.txt, sitemap) all read from here.
 
 export const SITE = {
-  url: 'https://tumulthakur.com',
+  // The live address. Change this one line when a custom domain is connected in Vercel.
+  url: 'https://tumul-neon-green-website.vercel.app',
   name: 'Tumul Thakur',
   jobTitle: 'Brand identity and website designer',
   title: 'Tumul Thakur — Brand & Website Designer in Pune',
