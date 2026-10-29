@@ -3,147 +3,202 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  /* Display: a tall civic gothic, like Pune's shop signage. Text: a plain public sans. */
+  --font-display: 'Big Shoulders', 'Arial Narrow', sans-serif;
+  --font-sans: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Only the older case-study pages use these two; they load with those pages. */
   --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --color-paper: var(--color-paper);
-  --color-ink: var(--color-ink);
-  --color-muted: var(--color-muted);
-  --color-accent: #C8FF00;
-  --color-hairline: var(--color-hairline);
+  --font-mono: 'Space Mono', ui-monospace, monospace; /* taste-skill-ignore */
+
+  --color-ink: #0b0b0a;
+  --color-paper: #efefeb;
+  --color-paper-2: #e1e1db;
+  --color-lime: #c8ff00;
+  --color-soft: #57574f;
+  --color-soft-dark: #a6a69c;
+  --color-accent: #c8ff00;
+
+  /* Five sizes do all the work. */
+  --text-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --text-small--line-height: 1.45;
+  --text-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --text-body--line-height: 1.55;
+  --text-lead: clamp(1.375rem, 1.1rem + 1.1vw, 2.25rem);
+  --text-lead--line-height: 1.3;
+  --text-head: clamp(2.75rem, 1rem + 5.2vw, 6rem);
+  --text-head--line-height: 0.88;
+  --text-display: clamp(8.5rem, 22vw, 24rem);
+  --text-display--line-height: 0.8;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-mono: 'Space Mono', monospace;
-
-  --color-paper: #F5F4F0;
-  --color-ink: #111111;
-  --color-muted: #8A8A84;
-  --color-hairline: rgba(17, 17, 17, 0.12);
-  --color-surface: #FFFFFF;
-  --color-card: #FFFFFF;
-  --color-card-border: rgba(17, 17, 17, 0.1);
-  --color-panel: #EBEAE5;
-
+  color-scheme: light;
   font-family: var(--font-sans);
   color: var(--color-ink);
   background-color: var(--color-paper);
-  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 html.dark {
-  --color-paper: #0C0C0B;
-  --color-ink: #F5F4F0;
-  --color-muted: #8E8E88;
-  --color-hairline: rgba(255, 255, 255, 0.12);
-  --color-surface: #141413;
-  --color-card: #181816;
-  --color-card-border: rgba(255, 255, 255, 0.12);
-  --color-panel: #1B1B18;
-
-  color: var(--color-ink);
-  background-color: var(--color-paper);
   color-scheme: dark;
 }
 
-/* Smooth color transition for theme switching */
 body {
-  transition: background-color 0.35s ease, color 0.35s ease;
+  margin: 0;
+  overflow-x: clip;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
 }
 
-/* Custom scrollbar styling */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-paper);
-}
-::-webkit-scrollbar-thumb {
-  background: #D4D3CC;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #111111;
+::selection {
+  background: var(--color-lime);
+  color: var(--color-ink);
 }
 
-html.dark ::-webkit-scrollbar-track {
-  background: #0C0C0B;
+:focus-visible {
+  outline: 3px solid var(--color-lime);
+  outline-offset: 3px;
 }
-html.dark ::-webkit-scrollbar-thumb {
-  background: #2A2A26;
-}
-html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #C8FF00;
-}
-
-/* Noise overlay texture for tactile editorial print feel */
-.editorial-grain {
-  background-image: radial-gradient(rgba(17, 17, 17, 0.04) 1px, transparent 0);
-  background-size: 24px 24px;
-}
-html.dark .editorial-grain {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+.on-lime :focus-visible,
+.on-paper :focus-visible {
+  outline-color: var(--color-ink);
 }
 
-/* Hide default cursor on desktop when custom cursor active */
-@media (min-width: 1024px) {
-  .has-custom-cursor {
-    cursor: none;
+/* Components sit in a layer so Tailwind utilities can override them. */
+@layer components {
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Masked headline: each authored line rises from behind its own baseline. */
+.lines .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.lines [data-line] {
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .lines [data-line] {
+    transform: translateY(105%);
+    animation: line-up 900ms var(--ease-out) forwards;
+    animation-delay: calc(var(--i, 0) * 110ms + 150ms);
   }
-  .has-custom-cursor a,
-  .has-custom-cursor button,
-  .has-custom-cursor input,
-  .has-custom-cursor [role="button"] {
-    cursor: none;
+  .js [data-intro] {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: intro-up 800ms var(--ease-out) 520ms forwards;
   }
-}
 
-/* Fluid animations */
-@keyframes floatGentle {
-  0%, 100% {
-    transform: translateY(0px);
+  /* Each part of a section rises once as the section arrives. */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 700ms var(--ease-out),
+      transform 900ms var(--ease-out);
+    transition-delay: calc(var(--d, 0) * 75ms);
   }
-  50% {
-    transform: translateY(-6px);
+  .js [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
   }
-}
 
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.75;
-    transform: scale(1.04);
-  }
-}
-
-.animate-float-gentle {
-  animation: floatGentle 5s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 8s ease-in-out infinite;
-}
-
-/* Sliding reviews marquee moving right to left */
-@keyframes marqueeMove {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
+  .drift {
+    animation: drift 18s ease-in-out infinite alternate;
   }
 }
 
-.animate-marquee {
-  animation: marqueeMove 32s linear infinite;
+@keyframes line-up {
+  to {
+    transform: none;
+  }
+}
+@keyframes intro-up {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes drift {
+  from {
+    transform: scale(1.02) translateY(0);
+  }
+  to {
+    transform: scale(1.08) translateY(-2%);
+  }
 }
 
-/* Lenis smooth scrolling rules */
-html.lenis, html.lenis body {
-  height: auto;
+/* Links that underline on their own terms. */
+.link {
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 200ms;
+}
+.link:hover {
+  text-decoration-color: var(--color-lime);
+}
+.on-lime .link:hover,
+.on-paper .link:hover {
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 0.14em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  min-height: 48px;
+  padding: 0 1.4em;
+  font-weight: 600;
+  border-radius: 0;
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 200ms,
+    color 200ms;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Fits a word or address to the full measure without wrapping. */
+.fit {
+  white-space: nowrap;
+}
+
+/* The work index: names change state, the frame swaps pictures. */
+.work-name {
+  transition: color 180ms;
+}
+.work-frame img {
+  transition: opacity 220ms ease;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

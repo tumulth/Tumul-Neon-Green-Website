@@ -4,11 +4,25 @@ export interface Project {
   title: string;
   category: string;
   categoryTag: string;
+  /** Short discipline label shown in indexes, e.g. "Website". */
+  discipline: string;
+  /** Where the work lives, when it is a real place. */
+  place?: string;
+  /** Agency the work was done with, if any. */
+  agency?: string;
   year: string;
   client: string;
   role: string[];
   deliverables: string[];
   heroTagline: string;
+  /** One sentence, used in indexes and as the page's meta description. */
+  summary: string;
+  /** The <title> of the project's own page. */
+  seoTitle: string;
+  /** 4:3 cover image used in indexes and social previews. */
+  cover: string;
+  coverAlt: string;
+  liveUrl?: string;
   challenge: string;
   approach: string;
   visualSystem: {
@@ -29,556 +43,483 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    id: 'bimacme',
+    id: 'subculture',
     number: '01',
-    title: 'BIMACME',
-    category: 'BRAND IDENTITY / SYSTEMS',
-    categoryTag: 'Architecture & Engineering',
-    year: '2025',
-    client: 'BIMACME Engineering Solutions',
-    role: ['Brand Strategy', 'Visual Identity', 'Brand Applications', 'Social Media', 'Video Editing'],
-    deliverables: [
-      'Visual Identity System',
-      'Brand Guidelines & Stationery',
-      'Corporate Presentation Collateral',
-      'Social & Motion Case Studies'
-    ],
-    heroTagline: 'A geometric identity and motion graphics system engineered for international digital construction consultancies.',
+    title: 'Subculture',
+    category: 'WEBSITE DESIGN',
+    categoryTag: 'Café website, Aundh',
+    discipline: 'Website',
+    place: 'Aundh, Pune',
+    year: '2026',
+    client: 'Subculture, a creative coffee community',
+    role: ['Website design', 'UI/UX', 'Build', 'Art direction'],
+    deliverables: ['Responsive website', 'Full menu with prices', 'Bar and kitchen sections', 'Visit, hours and directions'],
+    heroTagline: 'A website for a café in Aundh that puts the whole menu, with prices, in the café’s own cobalt blue.',
+    summary:
+      'Website for Subculture, a café in Aundh, Pune: the full menu with prices, designed and built around the café’s cobalt blue.',
+    seoTitle: 'Subculture café website, Aundh, Pune — Tumul Thakur',
+    cover: '/covers/subculture.jpg',
+    coverAlt: 'Subculture café website home screen: a latte in a blue Subculture cup on a cobalt field',
+    liveUrl: 'https://subculture-website-03out.vercel.app/',
     challenge:
-      'BIMACME coordinates complex Building Information Modeling (BIM), MEP clash detection, and constructible engineering workflows for international architects and builders. The brand needed to stand out in a sector dominated by generic 3D cubes and outdated technical diagrams. The challenge was to communicate mathematical precision and architectural coordination without looking cold or unapproachable.',
+      'Subculture is a café and kitchen in Aundh that calls itself a creative coffee community. Most café websites are a logo, a few photos and an Instagram link, which leaves the questions people actually have unanswered: what’s on the menu, what it costs, when it’s open and how to get there.',
     approach:
-      'I developed a custom geometric symbol paired with a strict typographic hierarchy. The mark combines interlocking geometric facets to create a split-A icon, utilizing precise negative space channels to represent MEP coordination and architectural flow. Paired with Effra Sans Serif and Switzer Regular, the system balances structural authority with modern digital clarity across print collateral, employee credentials, and 3D explainer videos.',
+      'I built the site around the café’s cobalt blue and its own product photography. The menu is the main content: every drink and dish with its price, split the way the café is, into the bar and the kitchen. A ticker shows what’s being poured, the café’s five ideals sit in a list you can open, and the address, hours and directions close every visit.',
     visualSystem: {
-      fontPairing: 'Effra Sans Serif & Switzer Regular',
+      fontPairing: 'Archivo for display, Geist Mono for labels, Inter for text',
       primaryColors: [
-        { name: 'Marine Navy', hex: '#0C1D49', role: 'Primary Corporate' },
-        { name: 'Traditional Blue', hex: '#3D7FE2', role: 'Digital Accent & Datum' },
-        { name: 'Blue Charcoal', hex: '#010F1C', role: 'Deep Contrast' },
-        { name: 'Chrome White', hex: '#E8F1F6', role: 'Ground Surface' }
+        { name: 'Cobalt', hex: '#33379D', role: 'The café’s blue: grounds and cups' },
+        { name: 'Night', hex: '#0C0C0E', role: 'Bar and kitchen menus' },
+        { name: 'Stone', hex: '#BAB3A9', role: 'The introduction' },
+        { name: 'Lilac white', hex: '#DCDCE8', role: 'Type on blue' },
       ],
-      gridConcept: 'Geometric coordinate grid with custom split-A icon logic',
-      designPhilosophy: 'Structured, precise, and engineered for complex workflows.'
+      gridConcept: 'A menu board: item on the left, price on the right',
+      designPhilosophy: 'Answer the customer’s questions on the first scroll.',
     },
     applications: [
-      {
-        title: 'Corporate Stationery & Collateral',
-        category: 'Print System',
-        description: 'Executive presentation folders, envelopes, and letterheads unified by strict margin datum lines and typographic restraint.'
-      },
-      {
-        title: 'Employee Identification & Lanyards',
-        category: 'Internal Brand',
-        description: 'Bilingual CR80 security badges and custom woven lanyard systems for international consultancy teams.'
-      },
-      {
-        title: 'Technical Video Case Studies',
-        category: 'Motion & Explainer',
-        description: 'Three edited video case studies breaking down constructible modeling, clash detection, and builder works workflows.'
-      }
+      { title: 'The bar', category: 'Menu', description: 'Hot, iced, boba and bottled drinks, each with its price, grouped the way they are ordered.' },
+      { title: 'The kitchen', category: 'Menu', description: 'Burgers, sandwiches, small plates and desserts, from ₹200 to ₹480, listed in full.' },
+      { title: 'Ideals', category: 'Story', description: 'Five short ideals, from carefully sourced to every creative welcome, set as an open list.' },
+      { title: 'Visit', category: 'Practical', description: 'Raagdhari Apartments, Aundh. Open 8am to 11pm, with directions and Instagram.' },
     ],
     outcome:
-      'Delivered a complete visual identity manual, executive stationery suite, on-site safety gear standards, and three technical video case studies that helped BIMACME present their MEP coordination capabilities to enterprise developers in Dubai and Singapore.',
+      'The site is live. Every item on the menu, its price and the café’s hours are on the page as real text, so they can be found by search and read on a phone.',
     featured: true,
-    accentColor: '#3D7FE2'
+    accentColor: '#33379D',
   },
   {
-    id: 'sangreen-logistics',
+    id: 'bimacme-website',
     number: '02',
-    title: 'Sangreen Logistics',
-    category: 'CORPORATE BRAND GUIDELINES',
-    categoryTag: 'Intermodal Freight & Supply Chain',
-    year: '2025',
-    client: 'Sangreen Logistics Pvt. Ltd.',
-    role: [
-      'Corporate Brand Guidelines',
-      'Logo System & Standards',
-      'Stationery & ID Systems',
-      'Merchandise & Apparel',
-      'Digital Communication'
-    ],
-    deliverables: [
-      '26-Section Brand Guidelines',
-      'Logo Construction & Geometry',
-      'Complete Stationery Suite',
-      'Workplace & Uniform Badging',
-      'Merchandise Specifications'
-    ],
-    heroTagline: 'A 26-chapter brand governance manual engineered for intermodal freight scale and highway visibility.',
+    title: 'Bimacme',
+    category: 'WEBSITE DESIGN',
+    categoryTag: 'Engineering website, Pune and London',
+    discipline: 'Website',
+    place: 'Pune · London',
+    year: '2026',
+    client: 'Bimacme Engineering Services',
+    role: ['Website design', 'UI/UX', 'Build', 'Art direction'],
+    deliverables: ['Responsive website', 'Fifteen service sections', 'Project stories', 'Technical journal'],
+    heroTagline: 'A website for a Pune engineering firm that sells MEP BIM coordination to contractors in the UK.',
+    summary:
+      'Website for Bimacme, a Pune MEP BIM consultancy with offices in London and the USA: fifteen services, project stories and a technical journal.',
+    seoTitle: 'Bimacme engineering website, Pune and London — Tumul Thakur',
+    cover: '/covers/bimacme-website.jpg',
+    coverAlt: 'Bimacme website home screen: a city skyline under construction at dusk with the line “Original & creative in thinking”',
+    liveUrl: 'https://bimacme-website.vercel.app/',
     challenge:
-      'Sangreen Logistics coordinates heavy intermodal freight, warehousing, and highway transit networks across India. The brand lacked consistent visual standards, resulting in fragmented typography, improper logo scaling across truck trailers, and unstandardized stationery. The objective was to author an exhaustive corporate brand manual establishing absolute operational consistency from executive correspondence to shipping containers.',
+      'Bimacme is a Pune company that does MEP BIM coordination and modelling, with offices in London and the USA. Its buyers are MEP directors and BIM managers at UK contractors. They want three answers quickly: which services, which projects, and whether this team can be trusted with their drawings.',
     approach:
-      'I authored a comprehensive 26-section brand guidelines standard anchored by Dusk Blue (#274482) and Light Forest Green (#459652). The system translates movement into a continuous-loop vector mark with mathematical X-unit clear space boundaries. I specified exact dimensions for dual-envelope corporate stationery (A4 and 12×4 in), CR80 security credentials, embroidered apparel, and highway vehicle livery.',
+      'I designed the site in the order those buyers read. Services come first, fifteen of them, split into core services and MEP trades. Then real projects in London and the UK, each a full-screen picture with the scope underneath. Then client logos, testimonials from UK engineers, and a journal of technical articles written for search. The navy and the split-A mark from the identity I made for Bimacme carry through.',
     visualSystem: {
-      fontPairing: 'Rubik Sans-Serif (Light, Regular, Medium, Bold, Black)',
+      fontPairing: 'Switzer for text and display, Newsreader for figures and quotes',
       primaryColors: [
-        { name: 'Dusk Blue', hex: '#274482', role: 'Trust, Infrastructure & Structure' },
-        { name: 'Light Forest Green', hex: '#459652', role: 'Growth, Sustainability & Movement' },
-        { name: 'Pure White', hex: '#FFFFFF', role: 'Clarity & Breathing Room' },
-        { name: 'Dark Neutral', hex: '#000000', role: 'Typography & Information' }
+        { name: 'Navy', hex: '#081433', role: 'Headers, footer and project panels' },
+        { name: 'Datum blue', hex: '#3D7FE2', role: 'Links and the mark' },
+        { name: 'Mist', hex: '#E8F1F6', role: 'Service and journal grounds' },
+        { name: 'Paper', hex: '#F5F9FB', role: 'Page ground' },
       ],
-      gridConcept: 'Modular corporate grid with X-unit clear space boundaries',
-      designPhilosophy: 'Operational clarity: engineering strict geometric rules and high-contrast color standards that hold up across highway transit and executive boardrooms.'
+      gridConcept: 'Full-screen project panels between calm text sections',
+      designPhilosophy: 'Show the buildings; let the engineering speak through them.',
     },
     applications: [
-      {
-        title: 'Executive Stationery & Collateral',
-        category: 'Corporate Collateral',
-        description: 'Business cards (3.5×2.01 in), letterheads (A4), and dual envelope systems (12×4 in & A4).'
-      },
-      {
-        title: 'Workplace Identification & Credentials',
-        category: 'Internal Brand',
-        description: 'CR80 standard dual-rail ID cards, custom woven lanyards, and executive desk name tags.'
-      },
-      {
-        title: 'Merchandise & Apparel Governance',
-        category: 'Brand Objects',
-        description: 'Direct embroidered caps, multi-format pin badges, corporate gift sets, and chest-placement polo rules.'
-      }
+      { title: 'Services', category: 'Structure', description: 'Fifteen services, from BIM coordination and staff augmentation to fire safety, shop drawings and data centres.' },
+      { title: 'Projects', category: 'Proof', description: 'Manor Road, The Portal, a UK aparthotel and Belgrave Village, each with location, scope and result.' },
+      { title: 'Journal', category: 'Search', description: 'Articles answering what UK mechanical contractors search for, from RIBA stages to shop drawings.' },
+      { title: 'Book a meeting', category: 'Conversion', description: 'A meeting link in the first screen, in the menu and at the end of every page.' },
     ],
     outcome:
-      'Standardized Sangreen\'s entire corporate footprint across 26 technical chapters, establishing definitive rules for print vendors, vehicle wrap fabricators, and regional logistics hubs.',
+      'The site is live: fifteen services, four project stories and a growing journal, written and structured to be found by UK contractors searching for MEP BIM coordination.',
     featured: true,
-    accentColor: '#274482'
+    accentColor: '#3D7FE2',
   },
   {
-    id: 'sangreen-future-renewables',
+    id: 'mi-cocina',
     number: '03',
-    title: 'Sangreen Future Renewables',
-    category: 'BRAND IDENTITY / ENVIRONMENTAL',
-    categoryTag: 'Clean Energy & Infrastructure',
-    year: '2025',
-    client: 'Sangreen Future Renewables (with Bandish Studios)',
-    role: [
-      'Brand Identity',
-      'Visual Identity',
-      'Brand Guidelines',
-      'Environmental Branding',
-      'Corporate Communication'
-    ],
-    deliverables: [
-      'Brand Identity & Construction System',
-      'Brand Identity Guidelines (2025 Edition)',
-      'Corporate Capabilities Profile Brochure',
-      'Workplace Environmental Graphics & Signage',
-      'Trade Exhibition Pavilion & Spatial Experience',
-      'Stationery & Security ID Credential Suite'
-    ],
-    heroTagline: 'Environmental graphics, technical capability monographs, and trade exhibition architecture for clean energy infrastructure.',
+    title: 'Mi Cocina',
+    category: 'WEBSITE DESIGN',
+    categoryTag: 'Restaurant website, Baner',
+    discipline: 'Website',
+    place: 'Baner, Pune',
+    year: '2026',
+    client: 'Mi Cocina, Mexican restaurant and bar',
+    role: ['Website design', 'UI/UX', 'Build', 'Art direction'],
+    deliverables: ['Responsive website', 'Table booking', 'Menu by course', 'Events and kitchen takeovers'],
+    heroTagline: 'A website for a new Mexican restaurant in Baner that gets people to book a table.',
+    summary:
+      'Website for Mi Cocina, a Mexican restaurant and bar in Baner, Pune: bookings, the menu and events in the restaurant’s green, red and marigold.',
+    seoTitle: 'Mi Cocina restaurant website, Baner, Pune — Tumul Thakur',
+    cover: '/covers/mi-cocina.jpg',
+    coverAlt: 'Mi Cocina website home screen: “Your neighbourhood Mexican kitchen in Pune” beside an illustrated taco',
+    liveUrl: 'https://micocina-website.vercel.app/',
     challenge:
-      'As a clean energy brand managing wind and solar BOP (Balance of Plant) infrastructure, Sangreen Future Renewables needed a high-credibility identity capable of scaling from dense technical engineering monographs to large-format office architecture and trade exhibition pavilions.',
+      'Mi Cocina is a new Mexican restaurant and bar in Baner. A new restaurant’s website has three jobs: tell people it exists, show them the food, and get them to book. It also had a kitchen takeover with two Michelin-honoured chefs to announce.',
     approach:
-      'In collaboration with Bandish Studios, I designed the brand identity guidelines, technical vector illustrations, corporate capabilities brochure, and environmental graphics. The visual system anchors on Light Sea Green (#3FACA2) and architectural neutral greys, combining fine-line turbine schematics with structured 12-column corporate layouts.',
+      'I gave the site the restaurant’s own colours: deep green, chilli red and marigold, with papel picado bunting across the top and illustrated tacos, chillies and avocados. “Book a table” is in the first screen and again at the end. The menu is grouped the way people order, from chips and dips to drinks, and a short “Hello!” section says what to expect: food is cooked to order in 20 to 25 minutes, and the kitchen lists its allergens.',
     visualSystem: {
-      fontPairing: 'Rubik Grotesk (300 to 900) & Technical Sans',
+      fontPairing: 'Lilita One for display, Quicksand for text',
       primaryColors: [
-        { name: 'Light Sea Green', hex: '#3FACA2', role: 'Primary Brand Anchor' },
-        { name: 'Light Grey', hex: '#D9D9D9', role: 'Architectural Ground & Tint System' },
-        { name: 'Deep Carbon', hex: '#111111', role: 'High-Contrast Typography' },
-        { name: 'Pure White', hex: '#FFFFFF', role: 'Clean Ground & Space' }
+        { name: 'Cocina green', hex: '#114920', role: 'Page ground' },
+        { name: 'Chilli red', hex: '#B93423', role: 'Hero and feature panels' },
+        { name: 'Marigold', hex: '#FEB640', role: 'Headlines and buttons' },
+        { name: 'Masa cream', hex: '#F6EAD3', role: 'Text' },
       ],
-      gridConcept: 'Technical wind-turbine construction grids and modular 12-column corporate layouts',
-      designPhilosophy: 'Technical precision over eco-clichés: grounding renewable infrastructure in engineering drawings and spatial clarity.'
+      gridConcept: 'Bold panels of colour, one idea each',
+      designPhilosophy: 'Loud, warm and easy to book.',
     },
     applications: [
-      {
-        title: 'Workplace Environmental Branding',
-        category: 'Physical Architecture',
-        description: 'Full-bleed acrylic wall graphics, turbine illustrations, and motivational installations across executive offices and transit corridors.'
-      },
-      {
-        title: 'Corporate Capabilities Profile',
-        category: 'Print & Editorial',
-        description: 'Comprehensive editorial brochure detailing civil, electrical, mechanical BOP, and gigawatt wind pipeline metrics.'
-      },
-      {
-        title: 'Brand Identity Guidelines (2025)',
-        category: 'Design Governance',
-        description: 'Formalized documentation governing symbol geometry, clear space, minimum sizing, Rubik typography, and application rules.'
-      },
-      {
-        title: 'Trade Exhibition Pavilion',
-        category: 'Experiential',
-        description: 'Large-scale trade exhibition presence featuring branded architectural louvers, meeting suites, and backlit capability panels.'
-      }
+      { title: 'Book a table', category: 'Conversion', description: 'The booking button sits in the first screen, the menu section and the footer.' },
+      { title: 'The menu', category: 'Menu', description: 'Seven courses, from chips and dips to drinks, each a large link to the full menu.' },
+      { title: 'Events', category: 'News', description: 'The “Taste of Mexico” kitchen takeover with two Michelin-honoured chefs, and what’s next.' },
+      { title: 'Hello!', category: 'Practical', description: 'Cooked to order in 20–25 minutes, veg and non-veg markers, and the allergens the kitchen handles.' },
     ],
     outcome:
-      'Delivered an integrated brand suite including the 2025 Brand Guidelines, a multi-page capabilities brochure detailing gigawatt pipeline metrics, full-bleed acrylic workplace wall graphics, and modular trade exhibition louvers.',
+      'The site is live, with bookings, the menu, events and the restaurant’s Instagram in one place, in colours you would recognise from the dining room.',
     featured: true,
-    accentColor: '#3FACA2'
-  },
-  {
-    id: 'sidhivinayak-precast',
-    number: '04',
-    title: 'Siddhivinayak Precast',
-    category: 'BRAND IDENTITY / INDUSTRIAL COMMUNICATION',
-    categoryTag: 'Precast Concrete & Infrastructure',
-    year: '2024',
-    client: 'Siddhivinayak Precast Pipes (with Bandish Studios)',
-    role: [
-      'Brand Identity',
-      'Brand Guidelines',
-      'Industrial Communication',
-      'Corporate Stationery'
-    ],
-    deliverables: [
-      'Brand Kit & Visual Identity Guidelines',
-      'Continuous Infinity Mark & Clear-Space System',
-      'Executive Stationery & Industrial Business Cards',
-      'Tri-Folded Letterhead & Corporate A4 Envelope',
-      'High-Visibility Site Security ID Card Suite',
-      'Heavy Civil Infrastructure Communication'
-    ],
-    heroTagline: 'Industrial brand kit and identity standards for precast concrete manufacturing and civil infrastructure.',
-    challenge:
-      'Manufacturing critical infrastructure like precast concrete pipes and storm drainage requires a visual identity reflecting monumental physical weight and structural reliability. The company operated without standardized vector assets, clear space rules, or corporate correspondence templates.',
-    approach:
-      'In collaboration with Bandish Studios, I developed an industrial Brand Kit anchored in architectural brutalism. The mark features a continuous infinity loop symbolizing enduring structural integrity, rendered in high-visibility Deep Carrot Orange (#EC6E2F) and Dark Slate Gray (#28585D). I engineered clean Ubuntu typographic rules and designed double-sided executive business cards, aggregate-textured letterheads, and site security credentials with woven lanyards.',
-    visualSystem: {
-      fontPairing: 'Ubuntu Sans-Serif (Light, Regular, Medium, Bold)',
-      primaryColors: [
-        { name: 'Deep Carrot Orange', hex: '#EC6E2F', role: 'High-Visibility Accent & Energy' },
-        { name: 'Dark Slate Gray', hex: '#28585D', role: 'Primary Structural Anchor' },
-        { name: 'Sonic Silver', hex: '#737476', role: 'Concrete & Steel Neutral' },
-        { name: 'Raisin Black', hex: '#231F20', role: 'Technical High-Contrast Typography' },
-        { name: 'Anti-Flash White', hex: '#F2F2F3', role: 'Architectural Ground' }
-      ],
-      gridConcept: 'Architectural formwork grid with monumental whitespace and brutalist geometric alignments',
-      designPhilosophy: 'Brutalist mass and manufacturing precision: engineered for high-visibility industrial plants and corporate tenders.'
-    },
-    applications: [
-      {
-        title: 'Executive Business Cards',
-        category: 'Stationery',
-        description: 'Dual-sided card stock resting on dark ridged industrial planes with QR integration.'
-      },
-      {
-        title: 'Tri-Folded Letterhead',
-        category: 'Correspondence',
-        description: 'Executive formal stationery resting on raw aggregate cast concrete.'
-      },
-      {
-        title: 'High-Visibility Employee ID',
-        category: 'Identification',
-        description: 'Site security credential with vibrant Deep Carrot Orange woven nylon lanyard.'
-      },
-      {
-        title: 'Corporate A4 Envelope',
-        category: 'Mailing System',
-        description: 'Clean mailing layout featuring signature full-bleed orange closure flap.'
-      }
-    ],
-    outcome:
-      'Formalized Siddhivinayak\'s brand assets into an industrial brand kit, providing production-ready vector standards, executive print collateral, and safety credentials that bridge manufacturing yards with municipal government tenders.',
-    featured: true,
-    accentColor: '#EC6E2F'
-  },
-  {
-    id: 'krisala-hiranandani',
-    number: '05',
-    title: 'Krisala x Hiranandani',
-    category: 'ART DIRECTION / MOTION / CAMPAIGN',
-    categoryTag: '105-Acre Integrated Township',
-    year: '2025',
-    client: 'Krisala Developers × Hiranandani Communities (with Bandish Studios)',
-    role: [
-      'Art Direction',
-      'Motion Graphics',
-      'Visual Communication System',
-      'Hero Film Overlays',
-      'Social Media Campaign Strategy'
-    ],
-    deliverables: [
-      'Township "Ideas In White" Visual Communication',
-      '4K Hero Film Motion Graphics & Telemetry Overlays',
-      '11-Asset High-Reach Social Media Campaign',
-      'Biophilic Design & Smart City IoT Graphics',
-      'Neoclassical Architectural Line Art Systems'
-    ],
-    heroTagline: 'Ideas in White: Art direction, on-screen motion telemetry, and campaign design for a 105-acre integrated township.',
-    challenge:
-      'Launching a 105-acre luxury township in North Hinjawadi, Pune, demanded visual communication that could convey both resort-style biophilic living and smart city IoT engineering. The challenge was integrating complex technical telemetry—100+ digital touchpoints, 50% renewable energy grids, and biophilic corridors—into a cinematic 4K hero film and high-reach social rollout without cluttering the architectural cinematography.',
-    approach:
-      'In collaboration with Bandish Studios, I art-directed the on-screen motion graphics, typography treatments, and visual identity for the "Ideas in White" launch. I developed fine-line vector overlays tracking architectural wireframes, designed cinematic 16:9 data telemetry cards, and produced an 11-asset social media campaign using Instrument Serif display typography and biophilic green accents.',
-    visualSystem: {
-      fontPairing: 'Instrument Serif Editorial Display & Technical Sans-Serif',
-      primaryColors: [
-        { name: 'Pure White', hex: '#FFFFFF', role: 'Architectural Canvas & "Ideas in White"' },
-        { name: 'Architectural Slate', hex: '#151719', role: 'High-Contrast Editorial Typography' },
-        { name: 'Biophilic Forest Green', hex: '#2D6A4F', role: 'Sustainable Terry Green Standards' },
-        { name: 'Soft Concrete Grey', hex: '#EAEAEA', role: 'Subtle Grid & Section Separation' }
-      ],
-      gridConcept: '16:9 cinematic widescreen layout with generous negative space and precision architectural telemetry',
-      designPhilosophy: 'Architectural telemetry: turning complex smart-city engineering into minimal, breathing on-screen motion graphics.'
-    },
-    applications: [
-      {
-        title: 'Hero Film Visual Communication',
-        category: 'Motion Graphics',
-        description: 'On-screen graphic overlays, typography treatments, and smart-city data telemetry bridging IoT metrics with cinematic storytelling.'
-      },
-      {
-        title: '11-Asset Social Media Rollout',
-        category: 'Digital Campaign',
-        description: 'High-reach reels and editorial posts translating "Ideas in White" into mobile-optimized visual assets with massive engagement.'
-      },
-      {
-        title: 'Neoclassical Wireframe Overlays',
-        category: 'Architectural Graphics',
-        description: 'Fine-line vector elevations and architectural tracking callouts emphasizing classical proportions and environmental flow.'
-      }
-    ],
-    outcome:
-      'Delivered on-screen graphics for the 4K hero film and an 11-asset social media campaign that generated over 1,00,000+ organic impressions during the preview launch.',
-    featured: true,
-    accentColor: '#2D6A4F'
-  },
-  {
-    id: 'social-media-creatives',
-    number: '06',
-    title: 'Social Media Creatives (2024–2025)',
-    category: 'SOCIAL DESIGN / DIGITAL MARKETING',
-    categoryTag: 'Social Media Design & Digital Campaigns',
-    year: '2024 — 2025',
-    client: 'Bandhan Bank · Smart Bazaar · Central Park Hotel · Bandish Studios',
-    role: ['Visual Communication', 'Social Media Design', 'Motion Graphics', 'Content Strategy'],
-    deliverables: [
-      'Multi-Industry Digital Campaigns',
-      'Mobile-First Creative Frameworks',
-      'Motion Graphics & Instagram Reels',
-      'High-Density Masonry Editorial Grids'
-    ],
-    heroTagline: 'High-density digital campaigns and motion design across national banking, retail, and hospitality.',
-    challenge:
-      'Managing ongoing social media communication across four contrasting industries—national finance (Bandhan Bank), nationwide retail (Smart Bazaar), luxury hospitality (The Central Park Hotel & Parc Estique), and creative agency culture (Bandish Studios)—required high-velocity creative execution while maintaining strict individual brand identities.',
-    approach:
-      'In collaboration with Bandish Studios, I established modular layout grids (4:5 vertical feeds and 9:16 reels) tailored to each brand\'s commercial objective. For Bandhan Bank, I prioritized informational hierarchy and trust. For Smart Bazaar, I developed high-contrast discount lockups for festival retail drives. For Central Park Hotel, I art-directed rich culinary photography and atmospheric event typography.',
-    visualSystem: {
-      fontPairing: 'Platform-Adaptive Display & Editorial Grotesk',
-      primaryColors: [
-        { name: 'Bandish Yellow', hex: '#FFE600', role: 'Creative Dynamism' },
-        { name: 'Bandhan Blue', hex: '#003B70', role: 'Financial Trust' },
-        { name: 'Retail Red', hex: '#D32F2F', role: 'Urgency & Scale' },
-        { name: 'Pitch Dark', hex: '#121417', role: 'Canvas Ground' }
-      ],
-      gridConcept: '4:5 in-feed vertical grids, 9:16 mobile mockups, and high-density editorial masonry spreads',
-      designPhilosophy: 'Channel velocity without craft compromise: modular mobile-first grids engineered for high thumb-stop impact.'
-    },
-    applications: [
-      {
-        title: 'Bandhan Bank Financial Campaigns',
-        category: 'Corporate Finance',
-        description: 'Clean typography, structured information hierarchies, and approachable imagery communicating financial products securely.'
-      },
-      {
-        title: 'Hospitality & Culinary Storytelling',
-        category: 'Atmospheric Dining',
-        description: 'Vibrant food photography, bold event typography, and urgency-driven event campaigns for Central Park & Parc Estique.'
-      },
-      {
-        title: 'Smart Bazaar Retail Drives',
-        category: 'Hypermarket FMCG',
-        description: 'High-impact scroll-stopping promotions blending seasonal greetings with festive product discounts at national scale.'
-      }
-    ],
-    outcome:
-      'Designed and delivered over 100+ production assets across banking, retail, and hospitality, backed by verified campaign creatives generating over 300k+ total likes and 90M+ total views.',
-    featured: true,
-    accentColor: '#D84A38'
+    accentColor: '#B93423',
   },
   {
     id: 'soma-cafe',
-    number: '07',
+    number: '04',
     title: 'Soma Cafe',
-    category: 'NEW BRAND / VISUAL IDENTITY / HOSPITALITY BRANDING',
-    categoryTag: 'Hospitality & Culinary Craft',
-    year: '2024 — 2025',
-    client: 'Soma / Soma Cafe',
-    role: [
-      'Visual Identity',
-      'Hospitality Branding',
-      'Art Direction',
-      'Stationery & Packaging Architecture',
-      'Tableware & Spatial Signage'
-    ],
+    category: 'BRAND IDENTITY / HOSPITALITY',
+    categoryTag: 'Café brand identity',
+    discipline: 'Brand identity',
+    year: '2025',
+    client: 'Soma Cafe',
+    role: ['Brand identity', 'Logo and monogram', 'Signage', 'Stationery and packaging', 'Tableware'],
     deliverables: [
-      "Wordmark & 'S' Monogram System",
-      'Architectural Facade & Brass Signage Standards',
-      'Geometric Drafting & Construction Blueprints',
-      'Executive Stationery & Chef Business Cards',
-      'Custom Lined Envelope Suites',
-      'Ceramic Tableware & Monogram Dishware',
-      'A-Frame Sidewalk & Environmental Touchpoints'
+      'Wordmark and S monogram',
+      'Shopfront signage in brass',
+      'Logo construction drawings',
+      'Business cards and envelopes',
+      'Plates, cups and takeaway bags',
+      'Sidewalk A-frame and menus',
     ],
-    heroTagline: 'A tactile hospitality identity spanning geometric logo drafting, brass facade signage, and custom dining tableware.',
+    heroTagline: 'A café identity that starts at the shopfront and ends on the plate: a serif wordmark, an S monogram, brass letters and green glaze.',
+    summary:
+      'Brand identity for Soma Cafe: a serif wordmark and S monogram, brass shopfront letters, stationery, packaging and tableware.',
+    seoTitle: 'Soma Cafe brand identity — Tumul Thakur, brand designer in Pune',
+    cover: '/covers/soma-cafe.jpg',
+    coverAlt: 'Soma Cafe shopfront in forest green with brushed brass lettering',
     challenge:
-      'Launching an artisanal cafe in an established culinary market required an identity that felt warm and intimate yet structurally sophisticated. The brand needed to translate seamlessly from exterior street presence to tactile paper menus, custom ceramic tableware, and staff uniforms.',
+      'A new café had to feel warm and personal without looking homemade. The identity had to work in brass on a shopfront, on a paper bag, on a business card and in the glaze of a plate: four very different materials.',
     approach:
-      'I developed the identity around a high-contrast serif wordmark, a geometrically drafted \'S\' monogram, and a calming palette of Soma Forest Green (#234133) and Antique Cream (#FAF8F5). I specified solid brushed brass dimensional lettering for the exterior facade, drafted concentric construction blueprints for the monogram, and designed duplexed 350gsm business cards, lined envelope suites, and custom-glazed ceramic dining plates.',
+      'I drew a high-contrast serif wordmark and an S monogram built from circles, so the same geometry scales from a facade to a coffee cup. Forest green (#234133) and antique cream (#FAF8F5) do most of the work, with brushed brass for signage and foil. I specified the shopfront lettering, 350gsm duplex business cards, lined envelopes, and plates with a green rim and a centred monogram.',
     visualSystem: {
-      fontPairing: 'High-Contrast Classic Serif & Neutral Sans-Serif',
+      fontPairing: 'High-contrast serif with a neutral sans',
       primaryColors: [
-        { name: 'Soma Forest Green', hex: '#234133', role: 'Primary Identity Anchor' },
-        { name: 'Warm Antique Cream', hex: '#FAF8F5', role: 'Substrate & Negative Space' },
-        { name: 'Brushed Brass', hex: '#C5A059', role: 'Architectural Signage & Foil' },
-        { name: 'Charcoal Ink', hex: '#1C1E1B', role: 'Editorial Typography' }
+        { name: 'Soma green', hex: '#234133', role: 'The main colour' },
+        { name: 'Antique cream', hex: '#FAF8F5', role: 'Paper and space' },
+        { name: 'Brushed brass', hex: '#C5A059', role: 'Signage and foil' },
+        { name: 'Charcoal', hex: '#1C1E1B', role: 'Text' },
       ],
-      gridConcept: 'Concentric circular drafting grids and classical golden-ratio layout margins',
-      designPhilosophy: 'Tactile craftsmanship: connecting architectural street signage, unbleached cotton papers, and artisanal ceramic dining touchpoints.'
+      gridConcept: 'A monogram drawn from concentric circles',
+      designPhilosophy: 'Feel made by hand, built from geometry.',
     },
     applications: [
-      {
-        title: 'Architectural Storefront Signage',
-        category: 'Spatial Branding',
-        description: 'Matte forest green facade with solid brushed brass lettering and bilingual \'सोमा\' detail.'
-      },
-      {
-        title: 'Tactile Executive Stationery',
-        category: 'Print Collateral',
-        description: 'Duplexed 350gsm business cards and bespoke envelopes lined with ornamental patterns.'
-      },
-      {
-        title: 'Custom Ceramic Dining Plates',
-        category: 'Tableware',
-        description: 'Artisanal white ceramic dishware featuring deep green rim detailing and centered \'S\' monogram.'
-      }
+      { title: 'Shopfront signage', category: 'Signage', description: 'A matte green facade with brushed brass letters and the name in Devanagari, सोमा.' },
+      { title: 'Stationery', category: 'Print', description: '350gsm duplex business cards and envelopes lined with a pattern.' },
+      { title: 'Tableware', category: 'Objects', description: 'White plates with a deep green rim and the S monogram in the centre.' },
     ],
     outcome:
-      'Crafted a complete hospitality identity system from blueprint drafting to physical dining execution, giving Soma Cafe an unmistakable presence across street signage, print menus, and tableware.',
+      'A complete café identity, from construction drawings to signage, stationery, packaging and tableware, that holds together from the street to the table.',
     featured: true,
-    accentColor: '#234133'
-  }
-];
-
-export interface ExperienceItem {
-  period: string;
-  role: string;
-  company: string;
-  location: string;
-  type: string;
-  description: string;
-  keyWork: string[];
-}
-
-export const EXPERIENCES: ExperienceItem[] = [
-  {
-    period: '2024 — 2025',
-    role: 'Senior Visualizer',
-    company: 'Bandish Studios',
-    location: 'Pune, India',
-    type: 'Agency Practice',
-    description:
-      'Contributed to brand identity systems, corporate guidelines, environmental graphics, and high-density digital marketing campaigns. Designed motion telemetry overlays and social frameworks across enterprise clients.',
-    keyWork: [
-      'Visual identities and brand manuals for Sangreen Logistics, BIMACME, and Siddhivinayak Precast',
-      'Art-directed motion telemetry and social campaign rollout for Krisala x Hiranandani',
-      'High-density digital marketing creatives for Bandhan Bank and Smart Bazaar'
-    ]
+    accentColor: '#234133',
   },
   {
-    period: '2022 — 2024',
-    role: 'Video Editor & Jr. Graphic Designer',
-    company: 'House of Content',
-    location: 'Pune, India',
-    type: 'Agency Practice',
-    description:
-      'Edited promotional video campaigns, created kinetic typography sequences, and designed marketing collateral across consumer and technology brands.',
-    keyWork: [
-      'Edited multi-format promotional video assets in Premiere Pro and After Effects',
-      'Created animated motion reels and visual social campaign templates',
-      'Designed presentation decks and vector brand assets'
-    ]
-  },
-  {
-    period: '2021 — 2022',
-    role: 'Graphic Design Intern',
-    company: 'Team Ranuver',
-    location: 'Pune, India',
-    type: 'Design Consultancy',
-    description:
-      'Assisted with brand identity concepts, typography layouts, vector drafting, and corporate stationery preparation for commercial clients.',
-    keyWork: [
-      'Assisted in drafting wordmarks, vector logos, and layout grids',
-      'Prepared production-ready print files and stationery templates'
-    ]
-  },
-  {
-    period: '2020 — 2021',
-    role: 'Graphic Design Intern',
-    company: 'Paycrunch',
-    location: 'Remote / India',
-    type: 'Fintech Startup',
-    description:
-      'Created marketing graphics, interactive social media assets, and promotional illustrations for a mobile fintech application.',
-    keyWork: [
-      'Designed in-app promotional banners and social campaign graphics',
-      'Created visual educational posts explaining financial concepts'
-    ]
-  }
-];
-
-export interface ServiceItem {
-  number: string;
-  title: string;
-  tagline: string;
-  description: string;
-  capabilities: string[];
-  associatedProject: string;
-}
-
-export const SERVICES: ServiceItem[] = [
-  {
-    number: '01',
-    title: 'BRAND IDENTITY',
-    tagline: 'Vector geometry, typographic hierarchy, and clear-space standards.',
-    description:
-      'I design custom geometric logomarks, monograms, and proportional wordmarks. Every brand identity is defined by mathematical grids, strict clear-space rules, and complete color specifications across print and screen.',
-    capabilities: ['Logomarks & Monograms', 'Typographic Hierarchy', 'Color Specifications', 'Grid Construction', 'Usage Boundaries'],
-    associatedProject: 'Soma Cafe'
-  },
-  {
-    number: '02',
-    title: 'CORPORATE GUIDELINES',
-    tagline: 'Multi-chapter brand governance for operational consistency.',
-    description:
-      'I author comprehensive corporate brand guidelines detailing logo construction, dual-envelope correspondence, employee security badging, vehicle fleet livery, and vendor print rules.',
-    capabilities: ['Brand Standards Manuals', 'Executive Stationery Suites', 'Highway Fleet Livery', 'Security Badging Systems', 'Print & Finishing Specs'],
-    associatedProject: 'Sangreen Logistics'
-  },
-  {
-    number: '03',
-    title: 'CAMPAIGN ART DIRECTION',
-    tagline: 'Translating architectural scale and technical telemetry into film.',
-    description:
-      'I establish visual themes, design on-screen motion telemetry for 4K hero films, and coordinate multi-channel campaign rollouts bridging technical engineering with human emotion.',
-    capabilities: ['Township Visual Themes', 'Hero Film Telemetry Graphics', 'Digital Campaign Rollouts', 'Architectural Line Art', 'Editorial Storyboards'],
-    associatedProject: 'Krisala Hiranandani'
-  },
-  {
-    number: '04',
-    title: 'INDUSTRIAL & SPATIAL SYSTEMS',
-    tagline: 'Brutalist identity and environmental infrastructure design.',
-    description:
-      'I build heavy-duty visual identities and spatial graphics for manufacturing facilities, exhibition pavilions, and site signage engineered for high-visibility real-world recognition.',
-    capabilities: ['Heavy Industrial Brand Kits', 'Site Security Badges', 'Exhibition Pavilions', 'Facade Brass Lettering', 'Aggregate Print Collateral'],
-    associatedProject: 'Siddhivinayak Precast'
-  },
-  {
+    id: 'bimacme',
     number: '05',
-    title: 'SOCIAL MEDIA SYSTEMS',
-    tagline: 'High-density editorial grids and motion frameworks.',
-    description:
-      'I develop mobile-first 4:5 and 9:16 layout templates, carousel narratives, and animated reels for national banks, hypermarkets, and hospitality brands requiring daily visual consistency.',
-    capabilities: ['In-Feed Editorial Grids', 'Motion Reels & Stories', 'Retail Discount Frameworks', 'Campaign Asset Toolkits', 'Rapid Content Workflows'],
-    associatedProject: 'Social Media Creatives'
+    title: 'Bimacme',
+    category: 'BRAND IDENTITY',
+    categoryTag: 'Engineering brand identity',
+    discipline: 'Brand identity',
+    place: 'Pune · London',
+    year: '2025',
+    client: 'Bimacme Engineering Services',
+    role: ['Brand strategy', 'Visual identity', 'Brand applications', 'Social media', 'Video editing'],
+    deliverables: [
+      'Logo and visual identity',
+      'Brand guidelines and stationery',
+      'Presentation folders',
+      'ID cards, lanyards and site gear',
+      'Three video case studies',
+    ],
+    heroTagline:
+      'An identity for a Pune engineering firm that coordinates building services for UK contractors: a split-A mark, a navy palette, and stationery, ID cards and site gear.',
+    summary:
+      'Brand identity for Bimacme, a Pune MEP BIM consultancy: a split-A mark, navy palette, stationery, ID cards, site gear and video.',
+    seoTitle: 'Bimacme brand identity, Pune — Tumul Thakur',
+    cover: '/covers/bimacme.jpg',
+    coverAlt: 'Bimacme employee ID card on a blue lanyard',
+    challenge:
+      'Bimacme does MEP BIM coordination: it models ducts, pipes and cables in 3D so they don’t clash on site. Its competitors all use the same blue cubes and wireframe buildings. Bimacme needed to look precise and senior to UK engineers without looking cold.',
+    approach:
+      'I built a split-A mark from two interlocking facets, with the gap between them standing for the coordination work: services threaded through a building. Marine navy (#0C1D49) and a brighter datum blue (#3D7FE2) carry the brand, with Effra and Switzer for type. I applied it to stationery, presentation folders, ID cards and lanyards, helmets and vests, and edited three video case studies about their modelling and clash-detection work.',
+    visualSystem: {
+      fontPairing: 'Effra and Switzer',
+      primaryColors: [
+        { name: 'Marine navy', hex: '#0C1D49', role: 'The main colour' },
+        { name: 'Datum blue', hex: '#3D7FE2', role: 'Accent and screens' },
+        { name: 'Blue charcoal', hex: '#010F1C', role: 'Deep contrast' },
+        { name: 'Chrome white', hex: '#E8F1F6', role: 'Ground' },
+      ],
+      gridConcept: 'A coordinate grid behind the split-A mark',
+      designPhilosophy: 'Precise, but never cold.',
+    },
+    applications: [
+      { title: 'Stationery and folders', category: 'Print', description: 'Presentation folders, envelopes and letterheads with strict margins and quiet type.' },
+      { title: 'ID cards and lanyards', category: 'Team', description: 'CR80 ID cards and woven lanyards for teams in Pune and London.' },
+      { title: 'Video case studies', category: 'Motion', description: 'Three edited films on constructible modelling, clash detection and builder’s work.' },
+    ],
+    outcome:
+      'Bimacme now has one consistent look across print, site and screen, and the same identity runs through the website I later designed for them.',
+    featured: true,
+    accentColor: '#3D7FE2',
   },
   {
+    id: 'krisala-hiranandani',
     number: '06',
-    title: 'MOTION DESIGN & VIDEO EDITING',
-    tagline: 'Rhythmic pacing, on-screen callouts, and technical explainer edits.',
-    description:
-      'I edit and animate technical case studies, promotional reels, and brand reveal idents in After Effects and Premiere Pro, turning complex engineering models into clear visual narratives.',
-    capabilities: ['Technical Explainer Edits', 'Kinetic Typography', 'Brand Reveal Idents', 'Telemetry Animation', 'Social Video Pacing'],
-    associatedProject: 'BIMACME'
-  }
+    title: 'Krisala × Hiranandani',
+    category: 'ART DIRECTION / MOTION / CAMPAIGN',
+    categoryTag: 'Township launch campaign',
+    discipline: 'Campaign and motion',
+    place: 'Hinjawadi, Pune',
+    agency: 'Bandish Studios',
+    year: '2025',
+    client: 'Krisala Developers × Hiranandani Communities (with Bandish Studios)',
+    role: ['Art direction', 'Motion graphics', 'Campaign design', 'Film graphics', 'Social media'],
+    deliverables: [
+      '“Ideas in White” campaign look',
+      'On-screen graphics for the 4K launch film',
+      'Eleven social posts and reels',
+      'Architectural line drawings',
+    ],
+    heroTagline:
+      '“Ideas in White”: on-screen graphics for the launch film and an eleven-post social campaign for a 105-acre township in North Hinjawadi.',
+    summary:
+      'Launch campaign for a 105-acre Krisala × Hiranandani township in Hinjawadi, Pune: film graphics, line drawings and eleven social posts.',
+    seoTitle: 'Krisala × Hiranandani township campaign, Hinjawadi, Pune — Tumul Thakur',
+    cover: '/covers/krisala-hiranandani.jpg',
+    coverAlt: 'Ideas in White title card from the Krisala and Hiranandani launch film',
+    challenge:
+      'Krisala and Hiranandani were launching a 105-acre township in North Hinjawadi, Pune. The launch film had to explain smart-city features, from sensors to renewable energy and green corridors, without burying the architecture under charts.',
+    approach:
+      'Working with Bandish Studios, I designed the film’s on-screen graphics: thin line drawings that trace the buildings, and short data cards that appear, explain and leave. I carried the same look into eleven social posts and reels, set in Instrument Serif with a forest-green accent on white: the campaign’s “Ideas in White”.',
+    visualSystem: {
+      fontPairing: 'Instrument Serif with a technical sans',
+      primaryColors: [
+        { name: 'White', hex: '#FFFFFF', role: '“Ideas in White”' },
+        { name: 'Slate', hex: '#151719', role: 'Type' },
+        { name: 'Forest green', hex: '#2D6A4F', role: 'Accent' },
+        { name: 'Concrete grey', hex: '#EAEAEA', role: 'Grounds' },
+      ],
+      gridConcept: '16:9 film frames with wide margins',
+      designPhilosophy: 'Let the buildings lead; graphics arrive, explain and leave.',
+    },
+    applications: [
+      { title: 'Launch film graphics', category: 'Motion', description: 'Line drawings and data cards that explain the township’s smart-city features over the film.' },
+      { title: 'Social campaign', category: 'Social', description: 'Eleven posts and reels that carry “Ideas in White” onto phones.' },
+      { title: 'Line drawings', category: 'Illustration', description: 'Fine elevations of the buildings, used in the film and the posts.' },
+    ],
+    outcome:
+      'On-screen graphics for the 4K launch film and an eleven-post campaign that reached over 1,00,000 organic impressions during the preview launch.',
+    featured: true,
+    accentColor: '#2D6A4F',
+  },
+  {
+    id: 'sangreen-logistics',
+    number: '07',
+    title: 'Sangreen Logistics',
+    category: 'BRAND GUIDELINES',
+    categoryTag: 'Logistics brand guidelines',
+    discipline: 'Brand guidelines',
+    year: '2025',
+    client: 'Sangreen Logistics Pvt. Ltd.',
+    role: ['Brand guidelines', 'Logo system', 'Stationery and ID cards', 'Merchandise and uniforms', 'Vehicle graphics'],
+    deliverables: [
+      '26-section brand guidelines',
+      'Logo construction and clear space',
+      'Full stationery set',
+      'ID cards and uniforms',
+      'Merchandise specs',
+    ],
+    heroTagline: 'A 26-section brand guidelines book for a freight and warehousing company: one set of rules from the letterhead to the side of a truck.',
+    summary:
+      'A 26-section brand guidelines book for Sangreen Logistics: logo rules, Rubik type, stationery, ID cards, uniforms and vehicle graphics.',
+    seoTitle: 'Sangreen Logistics brand guidelines — Tumul Thakur, brand designer in Pune',
+    cover: '/covers/sangreen-logistics.jpg',
+    coverAlt: 'Sangreen Logistics horizontal logo in blue and green',
+    challenge:
+      'Sangreen Logistics moves freight by road and rail and runs warehouses across India. Its logo was being stretched on trailers, retyped on letterheads and recoloured by every printer. It needed one document that any vendor could follow.',
+    approach:
+      'I wrote and designed a 26-section brand guidelines book around the loop mark, dusk blue (#274482) and forest green (#459652). It sets clear space and minimum sizes, the Rubik type family, and exact specs for business cards, A4 letterheads, two envelope sizes, CR80 ID cards, embroidered caps and polos, and vehicle graphics.',
+    visualSystem: {
+      fontPairing: 'Rubik, from Light to Black',
+      primaryColors: [
+        { name: 'Dusk blue', hex: '#274482', role: 'Trust and structure' },
+        { name: 'Forest green', hex: '#459652', role: 'Growth and movement' },
+        { name: 'White', hex: '#FFFFFF', role: 'Space' },
+        { name: 'Black', hex: '#000000', role: 'Text' },
+      ],
+      gridConcept: 'Clear space measured in units of the mark',
+      designPhilosophy: 'One rulebook for the boardroom and the highway.',
+    },
+    applications: [
+      { title: 'Stationery', category: 'Print', description: 'Business cards (3.5 × 2 in), A4 letterheads and two envelope sizes.' },
+      { title: 'ID cards', category: 'Team', description: 'CR80 ID cards, woven lanyards and desk name plates.' },
+      { title: 'Merchandise and uniforms', category: 'Objects', description: 'Embroidered caps, pin badges, gift sets and polo placement rules.' },
+    ],
+    outcome:
+      'Printers, uniform suppliers and vehicle-wrap fabricators now work from the same 26-section book, so the brand looks the same in a boardroom and on a highway.',
+    featured: true,
+    accentColor: '#274482',
+  },
+  {
+    id: 'sangreen-future-renewables',
+    number: '08',
+    title: 'Sangreen Renewables',
+    category: 'BRAND IDENTITY / ENVIRONMENTAL',
+    categoryTag: 'Renewable energy brand',
+    discipline: 'Brand and spaces',
+    agency: 'Bandish Studios',
+    year: '2025',
+    client: 'Sangreen Future Renewables (with Bandish Studios)',
+    role: ['Brand identity', 'Brand guidelines', 'Office graphics', 'Brochure', 'Exhibition stand'],
+    deliverables: [
+      'Brand identity and construction',
+      'Brand guidelines, 2025 edition',
+      'Capabilities brochure',
+      'Office wall graphics and signage',
+      'Trade exhibition stand',
+      'Stationery and ID cards',
+    ],
+    heroTagline: 'Brand guidelines, a capabilities brochure, office wall graphics and an exhibition stand for a wind and solar infrastructure company.',
+    summary:
+      'Brand guidelines, brochure, office wall graphics and an exhibition stand for Sangreen Future Renewables, a wind and solar infrastructure company.',
+    seoTitle: 'Sangreen Future Renewables brand and office graphics — Tumul Thakur',
+    cover: '/covers/sangreen-future-renewables.jpg',
+    coverAlt: 'Sangreen Future Renewables wall graphic of wind turbines being installed in an office',
+    challenge:
+      'Sangreen Future Renewables builds the balance of plant for wind and solar farms: the civil, electrical and mechanical work around the turbines. It needed to look credible in a dense technical brochure and on an office wall.',
+    approach:
+      'With Bandish Studios, I designed the 2025 brand guidelines, a capabilities brochure, line illustrations of turbines and the office’s wall graphics. Light sea green (#3FACA2) and architectural greys carry the system, and the turbine drawings replace the usual leaf-and-sun clichés.',
+    visualSystem: {
+      fontPairing: 'Rubik, from 300 to 900',
+      primaryColors: [
+        { name: 'Sea green', hex: '#3FACA2', role: 'The main colour' },
+        { name: 'Light grey', hex: '#D9D9D9', role: 'Grounds and tints' },
+        { name: 'Carbon', hex: '#111111', role: 'Text' },
+        { name: 'White', hex: '#FFFFFF', role: 'Space' },
+      ],
+      gridConcept: 'Turbine drawings on a 12-column layout',
+      designPhilosophy: 'Engineering drawings instead of eco clichés.',
+    },
+    applications: [
+      { title: 'Office wall graphics', category: 'Spaces', description: 'Full-height wall graphics and turbine illustrations for offices and corridors.' },
+      { title: 'Capabilities brochure', category: 'Print', description: 'Civil, electrical and mechanical capabilities, with the wind pipeline in figures.' },
+      { title: 'Brand guidelines', category: 'Rules', description: 'Symbol geometry, clear space, minimum sizes, Rubik type and how to apply them.' },
+      { title: 'Exhibition stand', category: 'Events', description: 'Branded louvres, a meeting area and backlit panels for trade shows.' },
+    ],
+    outcome:
+      'A 2025 brand guidelines book, a capabilities brochure, wall graphics installed in the office and modular panels for trade exhibitions.',
+    featured: true,
+    accentColor: '#3FACA2',
+  },
+  {
+    id: 'sidhivinayak-precast',
+    number: '09',
+    title: 'Siddhivinayak Precast',
+    category: 'BRAND IDENTITY / INDUSTRIAL',
+    categoryTag: 'Precast concrete brand kit',
+    discipline: 'Brand identity',
+    agency: 'Bandish Studios',
+    year: '2024',
+    client: 'Siddhivinayak Precast Pipes (with Bandish Studios)',
+    role: ['Brand identity', 'Brand guidelines', 'Industrial communication', 'Stationery'],
+    deliverables: [
+      'Brand kit and guidelines',
+      'Infinity mark and clear space',
+      'Business cards',
+      'Letterhead and A4 envelope',
+      'Site ID cards',
+      'Tender and site communication',
+    ],
+    heroTagline: 'A brand kit for a maker of precast concrete pipes: an infinity mark, carrot orange and slate, and stationery that survives a factory yard.',
+    summary:
+      'Brand kit for Siddhivinayak Precast, a maker of concrete pipes: an infinity mark, orange and slate colours, Ubuntu type and stationery.',
+    seoTitle: 'Siddhivinayak Precast brand kit — Tumul Thakur, brand designer in Pune',
+    cover: '/covers/sidhivinayak-precast.jpg',
+    coverAlt: 'Siddhivinayak Precast business cards on a dark ridged surface',
+    challenge:
+      'Siddhivinayak makes precast concrete pipes and drainage for civil projects. It had no vector logo, no rules and no templates, so every tender and letter looked different.',
+    approach:
+      'With Bandish Studios, I built a brand kit around a continuous infinity mark, for strength that lasts, in deep carrot orange (#EC6E2F) and dark slate (#28585D), set in Ubuntu. Then the applications: double-sided business cards, a letterhead, an A4 envelope and site ID cards on orange lanyards.',
+    visualSystem: {
+      fontPairing: 'Ubuntu, from Light to Bold',
+      primaryColors: [
+        { name: 'Carrot orange', hex: '#EC6E2F', role: 'High-visibility accent' },
+        { name: 'Dark slate', hex: '#28585D', role: 'The main colour' },
+        { name: 'Sonic silver', hex: '#737476', role: 'Concrete and steel' },
+        { name: 'Raisin black', hex: '#231F20', role: 'Text' },
+        { name: 'Anti-flash white', hex: '#F2F2F3', role: 'Ground' },
+      ],
+      gridConcept: 'Heavy blocks and wide margins, like formwork',
+      designPhilosophy: 'Built to look as solid as the product.',
+    },
+    applications: [
+      { title: 'Business cards', category: 'Stationery', description: 'Double-sided cards with a QR code.' },
+      { title: 'Letterhead', category: 'Correspondence', description: 'A formal letterhead for tenders and site letters.' },
+      { title: 'Site ID card', category: 'Team', description: 'ID cards on carrot-orange woven lanyards, easy to spot on site.' },
+      { title: 'A4 envelope', category: 'Mail', description: 'A clean layout with a full orange flap.' },
+    ],
+    outcome:
+      'Production-ready logo files, type and colour rules, and print templates for everything from the factory yard to government tenders.',
+    featured: true,
+    accentColor: '#EC6E2F',
+  },
+  {
+    id: 'social-media-creatives',
+    number: '10',
+    title: 'Social Media Creatives',
+    category: 'SOCIAL MEDIA DESIGN',
+    categoryTag: 'Banking, retail and hospitality',
+    discipline: 'Social media',
+    agency: 'Bandish Studios',
+    year: '2024 — 2025',
+    client: 'Bandhan Bank · Smart Bazaar · The Central Park Hotel · Bandish Studios',
+    role: ['Social media design', 'Motion graphics', 'Campaign design', 'Content planning'],
+    deliverables: ['Campaigns for four brands', 'Post and reel templates', 'Instagram reels', 'Carousel and grid layouts'],
+    heroTagline: 'Posts, carousels and reels for Bandhan Bank, Smart Bazaar and The Central Park Hotel: more than 100 pieces across very different brands.',
+    summary:
+      'Social media posts, carousels and reels for Bandhan Bank, Smart Bazaar and The Central Park Hotel: 100+ pieces and 90 million views.',
+    seoTitle: 'Social media design for Bandhan Bank and Smart Bazaar — Tumul Thakur',
+    cover: '/covers/social-media-creatives.jpg',
+    coverAlt: 'Smart Bazaar Instagram posts shown on a phone and beside it',
+    challenge:
+      'Four brands, four voices and daily deadlines: a national bank that has to sound trustworthy, a hypermarket chain running festival offers, a hotel selling food and events, and the agency’s own feed.',
+    approach:
+      'With Bandish Studios, I built separate post and reel templates (4:5 and 9:16) for each brand. For Bandhan Bank: clear hierarchy, numbers first. For Smart Bazaar: big offer lockups that read in a thumb-scroll. For The Central Park Hotel: food photography and event typography.',
+    visualSystem: {
+      fontPairing: 'Each brand’s own type, on shared grids',
+      primaryColors: [
+        { name: 'Bandish yellow', hex: '#FFE600', role: 'Agency feed' },
+        { name: 'Bandhan blue', hex: '#003B70', role: 'Banking' },
+        { name: 'Retail red', hex: '#D32F2F', role: 'Offers' },
+        { name: 'Pitch dark', hex: '#121417', role: 'Ground' },
+      ],
+      gridConcept: '4:5 feed posts and 9:16 reels',
+      designPhilosophy: 'Fast to make, clear in a thumb-scroll.',
+    },
+    applications: [
+      { title: 'Bandhan Bank', category: 'Banking', description: 'Clear type and simple hierarchy for financial products.' },
+      { title: 'The Central Park Hotel', category: 'Hospitality', description: 'Food photography, event typography and offers for the hotel’s restaurants.' },
+      { title: 'Smart Bazaar', category: 'Retail', description: 'Festival greetings and offers that stop the scroll, at national scale.' },
+    ],
+    outcome:
+      'More than 100 published pieces across banking, retail and hospitality. The tracked posts and reels in this case study add up to over 300,000 likes and 90 million views.',
+    featured: true,
+    accentColor: '#D84A38',
+  },
 ];
+
+export const getProject = (id: string) => PROJECTS.find((p) => p.id === id);

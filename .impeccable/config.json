@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "instrument serif",
+        "createdAt": "2026-10-29T10:06:08.621Z",
+        "reason": "Claude: only loaded by ProjectPage for the 7 older case-study components that still use it; removal is part of the proposed legacy case-study restyle task"
+      }
+    ]
+  }
+}

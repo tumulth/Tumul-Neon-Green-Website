@@ -1,78 +1,66 @@
 import React from 'react';
+import { SITE } from '../data/site';
+import { GUTTER } from '../components/Header';
+import { Link } from '../router';
+import { useFit } from '../components/useFit';
 
-interface FooterProps {
-  onNavigateHome?: () => void;
-  onNavigateWork?: () => void;
-  onOpenContact?: () => void;
-}
+const PAGES = [
+  { label: 'Work', to: '/work' },
+  { label: 'Services', to: '/#services' },
+  { label: 'About', to: '/#about' },
+  { label: 'Questions', to: '/#questions' },
+  { label: 'Contact', to: '/#contact' },
+];
 
-export const Footer: React.FC<FooterProps> = ({
-  onNavigateHome,
-  onNavigateWork,
-  onOpenContact,
-}) => {
+export const Footer: React.FC = () => {
+  const fitRef = useFit<HTMLParagraphElement>();
   return (
-    <footer className="pt-16 pb-6 bg-[#F7F7F2] dark:bg-[#0C0C0B] text-[#111111] dark:text-[#F5F4F0] overflow-hidden border-t border-black/10 dark:border-white/10 transition-colors duration-300">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-        {/* Navigation Links & Copyright Row (Directly from Reference Photo) */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 pb-12 border-b border-black/10 dark:border-white/10 text-xs font-mono">
-          <div className="flex flex-wrap items-center gap-6 sm:gap-8 font-medium">
-            <button
-              onClick={() => {
-                onNavigateHome?.();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="hover:text-[#8A8A84] dark:hover:text-[#C8FF00] transition-colors uppercase text-[#111] dark:text-[#F5F4F0]"
-            >
-              Home
-            </button>
-            <button
-              onClick={() => {
-                const el = document.getElementById('about');
-                el?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="hover:text-[#8A8A84] dark:hover:text-[#C8FF00] transition-colors uppercase text-[#111] dark:text-[#F5F4F0]"
-            >
-              About
-            </button>
-            <button
-              onClick={() => {
-                onNavigateWork?.();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="hover:text-[#8A8A84] dark:hover:text-[#C8FF00] transition-colors uppercase text-[#111] dark:text-[#F5F4F0]"
-            >
-              Work (7)
-            </button>
-            <button
-              onClick={() => {
-                const el = document.getElementById('services');
-                el?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="hover:text-[#8A8A84] dark:hover:text-[#C8FF00] transition-colors uppercase text-[#111] dark:text-[#F5F4F0]"
-            >
-              Services
-            </button>
-            <button
-              onClick={onOpenContact}
-              className="hover:text-[#8A8A84] dark:hover:text-[#C8FF00] transition-colors uppercase text-[#111] dark:text-[#F5F4F0]"
-            >
-              Contact
-            </button>
-          </div>
-
-          <div className="text-[#8A8A84] dark:text-[#777]">
-            © 2026 Tumul Thakur. All rights reserved.
-          </div>
-        </div>
-
-        {/* Full-Width Italic Serif Signature */}
-        <div className="pt-8 pb-4 text-center overflow-hidden select-none px-4">
-          <div className="text-[10vw] sm:text-[11vw] md:text-[11.5vw] font-serif italic font-normal text-[#111111] dark:text-[#F5F4F0] leading-[0.9] tracking-tight whitespace-nowrap hover:opacity-90 transition-opacity">
-            Tumul Thakur
-          </div>
-        </div>
+  <footer className={`on-paper bg-paper text-ink ${GUTTER} pt-10 pb-5 min-h-[70svh] grid grid-rows-[auto_1fr_auto]`}>
+    <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-8 text-body">
+      <div className="lg:col-span-3">
+        <p className="font-semibold">{SITE.name}</p>
+        <p className="text-soft">
+          Brand and website designer
+          <br />
+          {SITE.city}, {SITE.region}, {SITE.country}
+        </p>
       </div>
-    </footer>
+      <nav aria-label="Footer" className="lg:col-span-3">
+        <ul>
+          {PAGES.map((p, i) => (
+            <li key={p.to}>
+              <Link to={p.to} className={`${i === 0 ? '' : 'text-soft'} hover:text-ink transition-colors`}>
+                {p.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <ul className="lg:col-span-3">
+        {SITE.socials.map((s, i) => (
+          <li key={s.label}>
+            <a href={s.url} target="_blank" rel="noopener me" className={`${i === 0 ? '' : 'text-soft'} hover:text-ink transition-colors`}>
+              {s.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div className="lg:col-span-3">
+        <a href={`mailto:${SITE.email}`} className="link">
+          {SITE.email}
+        </a>
+        <p className="text-soft">Freelance and full-time</p>
+      </div>
+    </div>
+
+    <div aria-hidden="true" />
+
+    <div>
+      <p ref={fitRef} aria-hidden="true" className="display fit text-[16vw] leading-[0.8] select-none">
+        Tumul Thakur
+      </p>
+      <p className="mt-4 text-small text-soft">© 2026 Tumul Thakur. Designed and built in Pune.</p>
+    </div>
+  </footer>
   );
 };
